@@ -1,0 +1,175 @@
+<UserControl x:Class="DialogueCalendarApp.Views.CalendarPageView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:conv="clr-namespace:DialogueCalendarApp.Converters;assembly=DialogueCalendarApp"
+             xmlns:vm="using:DialogueCalendarApp.ViewModels"
+             x:CompileBindings="True"
+             x:DataType="vm:CalendarPageViewModel"
+             x:Name="CalendarPageRoot"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="#2D2D30">
+    <UserControl.Resources>
+        <conv:ZeroToBorderThickness x:Key="ZeroToBorderThickness"/>
+        <conv:ZeroToEmptyStringConverter x:Key="ZeroToEmptyString"/>
+        <conv:TupleConverter x:Key="TupleConverter"/>
+        <conv:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
+        <vm:CalendarPageViewModel x:Key="CalendarVM"/>
+    </UserControl.Resources>
+    <Design.DataContext>
+        <vm:CalendarPageViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="Auto, *">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="시작 요일:" VerticalAlignment="Center" Foreground="White" Margin="0,0,5,0"/>
+            <ComboBox ItemsSource="{Binding WeekDays}"
+                      SelectedItem="{Binding SelectedStartDay, Mode=TwoWay}"
+                      Width="120"/>
+        </StackPanel>
+        <ItemsControl Grid.Row="1" Margin="0,5,0,5">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#AAAAAA"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Items>
+                <x:String>일</x:String>
+                <x:String>월</x:String>
+                <x:String>화</x:String>
+                <x:String>수</x:String>
+                <x:String>목</x:String>
+                <x:String>금</x:String>
+                <x:String>토</x:String>
+            </ItemsControl.Items>
+        </ItemsControl>
+
+        <ItemsControl Grid.Row="1" Margin="5" ItemsSource="{Binding Days}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:CalendarDayViewModel">
+                    <Border BorderBrush="#848282"
+                        BorderThickness="{Binding DayNumber, Converter={StaticResource ZeroToBorderThickness}}"
+                        Background="#2D2D30" Margin="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- 날짜 숫자 -->
+                            <TextBlock Grid.Row="0"  Text="{Binding DayNumber, Converter={StaticResource ZeroToEmptyString}}"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                                    Margin="5,5,5,0"
+                                    Foreground="White"
+                                    FontSize="14" FontWeight="SemiBold"/>
+
+                            <!-- 이벤트 리스트 -->
+                            <Grid Grid.Row="1" RowDefinitions="Auto,*">
+                                <!-- 위쪽 다른 UI -->
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- 새로 만들기 버튼 -->
+                                        <Button Grid.Row="0" Content="새로 만들기"
+                                                Background="#3CB371"
+                                                Foreground="White"
+                                                FontSize="12"
+                                                Margin="0,5,0,0"
+                                                Padding="5"
+                                                BorderThickness="0"
+                                                CornerRadius="4"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                IsVisible="{Binding DayNumber, Converter={StaticResource ZeroToVisibilityConverter}}"
+                                                Command="{Binding $parent[ItemsControl].((vm:CalendarPageViewModel)DataContext).AddEventCommand}">
+                                            <Button.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource TupleConverter}">
+                                                    <Binding Path="DayNumber"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=Window}"/>
+                                                </MultiBinding>
+                                            </Button.CommandParameter>
+                                        </Button>
+
+                                        <!-- 이벤트 리스트 -->
+                                        <ItemsControl ItemsSource="{Binding Events}" Grid.Row="1">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate x:DataType="vm:CalendarEvent">
+                                                    <Button 
+                                                        Background="#BF7C35"
+                                                        Foreground="White"
+                                                        FontSize="12"
+                                                        Margin="0,2,0,0"
+                                                        Padding="5"
+                                                        BorderThickness="0"
+                                                        CornerRadius="4"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Stretch"
+                                                        Command="{Binding EditEventCommand, Source={StaticResource CalendarVM}}">
+                                                        <Button.CommandParameter>
+                                                            <MultiBinding Converter="{StaticResource TupleConverter}">
+                                                                <Binding Path="Id"/>
+                                                                <Binding RelativeSource="{RelativeSource AncestorType=Window}"/>
+                                                            </MultiBinding>
+                                                        </Button.CommandParameter>
+
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <!-- KR 아이콘 -->
+                                                            <TextBlock Text="KR" Margin="0,0,5,0" VerticalAlignment="Center"
+                                                                    IsVisible="{Binding KRDialogueExists}"/>
+
+                                                            <!-- EN 아이콘 -->
+                                                            <TextBlock Grid.Column="1" Text="EN" Margin="0,0,5,0" VerticalAlignment="Center"
+                                                                    IsVisible="{Binding ENDialogueExists}"/>
+
+                                                            <!-- ID 표시 -->
+                                                            <TextBlock Grid.Column="2" Text="{Binding Id}" VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </Grid>
+                                </ScrollViewer>
+
+                            </Grid>
+
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+    </Grid>
+</UserControl>

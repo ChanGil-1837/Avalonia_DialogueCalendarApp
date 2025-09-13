@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DialogueCalendarApp.ViewModels"
+        xmlns:converters="using:DialogueCalendarApp.Converters" x:Class="DialogueCalendarApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="DialogueCalendarApp">
+
+    <Grid Background="#222">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="{Binding SlideWidth}"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 왼쪽 메뉴 바 -->
+        <StackPanel Grid.Column="0" Background="#1E1E2F" Orientation="Vertical">
+            <Button Content="📂 열기" Margin="5" Command="{Binding TogglePanelCommand}"/>
+        </StackPanel>
+
+        <!-- 슬라이드 되는 패널 -->
+       <Border Grid.Column="1" Background="#333344">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding FolderList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                        <Button Content="{Binding Name}"
+                                Command="{Binding $parent[ItemsControl].((vm:MainWindowViewModel)DataContext).OpenFolderCommand}"
+                                CommandParameter="{Binding}" />
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border> 
+        <!-- 오른쪽 메인 영역 -->
+        <Grid Grid.Column="2">
+            <TransitioningContentControl Content = "{Binding CurrentPage}"/>
+        </Grid>
+    </Grid>
+</Window>

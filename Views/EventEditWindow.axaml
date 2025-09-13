@@ -1,0 +1,59 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="400" Height="700"
+        x:Class="DialogueCalendarApp.Views.EventEditWindow"
+        Title="이벤트 수정"
+        xmlns:vm="using:DialogueCalendarApp.ViewModels"
+        x:DataType="vm:EventEditViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20" Spacing="10">
+
+            <TextBlock Text="Event Editor" FontWeight="Bold" FontSize="16" Margin="0,0,0,20"/>
+
+            <StackPanel Margin="20">
+                <TextBlock Text="ID"/>
+                <TextBox Text="{Binding Id}" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Month: "/>
+                    <TextBlock Text="{Binding Month}"/>
+
+                    <TextBlock Text="Day: " Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Day}"/>
+                </StackPanel>
+                
+                <TextBlock Text="Time"/>
+                <TextBox Text="{Binding Time}" />
+
+                <TextBlock Text="Location"/>
+                <TextBox Text="{Binding Location}" />
+
+                <TextBlock Text="KRDialogue"/>
+                <TextBox Text="{Binding KRDialogue}" />
+                <TextBlock Text="ENDialogue"/>
+                <TextBox Text="{Binding ENDialogue}" />
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Spacing="10">
+                    <Button Content="Open KR" Command="{Binding OpenKRCommand}" />
+                    <Button Content="Open EN" Command="{Binding OpenENCommand}" />
+                </StackPanel>
+
+                <TextBlock Text="Condition"/>
+                <TextBox Text="{Binding Condition}" />
+
+
+                <TextBlock Text="Description"/>
+                <TextBox Text="{Binding Desc}" AcceptsReturn="True" Height="60"/>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
+                    <Button Content="Save" Command="{Binding SaveCommand}" Margin="0 0 10 0"/>
+                    <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+                </StackPanel>
+                
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
