@@ -30,5 +30,5 @@ public static class AppSettings
     public static string SettingsFilePath { get; } = Path.Combine(AppDataFolder, "settings.json");
     public static string CSVPATH = "";
     public static string DIRPATH = "";
-    public static string DIALOGUEAPPLOC = "/Users/chanhogil/Documents/Python/Dialogue/dist/DialogueApp";
+    public static string DIALOGUEAPPLOC = "C:\\Users\\KGA-028\\Desktop\\main.exe";
 }

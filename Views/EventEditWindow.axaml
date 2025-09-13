@@ -39,6 +39,9 @@
                     <Button Content="Open KR" Command="{Binding OpenKRCommand}" />
                     <Button Content="Open EN" Command="{Binding OpenENCommand}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Spacing="10">
+                    <Button Content="Copy KR to EN" Command="{Binding CopyCommand}" />
+                </StackPanel>
 
                 <TextBlock Text="Condition"/>
                 <TextBox Text="{Binding Condition}" />

@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="DialogueCalendarApp.Views.ConfirmDialog"
+        Width="400" Height="200"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Title="확인">
+    <StackPanel Margin="20" Spacing="15">
+        <TextBlock x:Name="MessageText" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+            <Button Width="80" Content="예"  Click="Yes_Click"/>
+            <Button Width="80" Content="아니오" Click="No_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

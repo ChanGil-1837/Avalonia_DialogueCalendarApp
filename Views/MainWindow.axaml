@@ -7,14 +7,14 @@
 
     <Grid Background="#222">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="{Binding SlideWidth}"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- 왼쪽 메뉴 바 -->
         <StackPanel Grid.Column="0" Background="#1E1E2F" Orientation="Vertical">
-            <Button Content="📂 열기" Margin="5" Command="{Binding TogglePanelCommand}"/>
+            <Button Content="📂 열기" Margin="5" Foreground="White" Command="{Binding TogglePanelCommand}"/>
         </StackPanel>
 
         <!-- 슬라이드 되는 패널 -->
@@ -23,7 +23,7 @@
                 <ItemsControl ItemsSource="{Binding FolderList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                        <Button Content="{Binding Name}"
+                        <Button Content="{Binding Name}" Foreground="White"
                                 Command="{Binding $parent[ItemsControl].((vm:MainWindowViewModel)DataContext).OpenFolderCommand}"
                                 CommandParameter="{Binding}" />
 

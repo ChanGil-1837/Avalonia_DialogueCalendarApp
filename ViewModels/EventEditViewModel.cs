@@ -46,10 +46,18 @@ public class EventEditViewModel : ObservableObject
     public string Location { get => _location; set => SetProperty(ref _location, value); }
 
     private string _krDialogue = "";
-    public string KRDialogue { get => _krDialogue+".json"; set => SetProperty(ref _krDialogue, value); }
-    private string _enDialogue = "";
-    public string ENDialogue { get => _enDialogue+".json"; set => SetProperty(ref _enDialogue, value); }
+    public string KRDialogue
+    {
+        get => Path.ChangeExtension(_krDialogue, ".json");
+        set => SetProperty(ref _krDialogue, value);
+    }
 
+    private string _enDialogue = "";
+    public string ENDialogue
+    {
+        get => Path.ChangeExtension(_enDialogue, ".json");
+        set => SetProperty(ref _enDialogue, value);
+    }
     private string _condition = "";
     public string Condition { get => _condition; set => SetProperty(ref _condition, value); }
 
@@ -64,6 +72,7 @@ public class EventEditViewModel : ObservableObject
     // Command properties
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
+    public ICommand CopyCommand { get; }
 
     // TaskCompletionSource를 사용해 모달 결과 전달
     public TaskCompletionSource<bool> Completion { get; } = new();
@@ -74,8 +83,27 @@ public class EventEditViewModel : ObservableObject
         CancelCommand = new RelayCommand(OnCancel);
         OpenKRCommand = new RelayCommand(OpenKR);
         OpenENCommand = new RelayCommand(OpenEN);
-        
+        CopyCommand = new RelayCommand(CopyDialogue);
+
     }
+    private async void CopyDialogue()
+    {
+        if (string.IsNullOrWhiteSpace(KRDialogue) || !File.Exists(KRDialogue))
+            return;
+
+        bool proceed = await EnsureFileExists(ENDialogue);
+        if (!proceed) return;
+
+        File.Copy(KRDialogue, ENDialogue, overwrite: true);
+
+        var doneDialog = new Views.ConfirmDialog("복사가 완료되었습니다.");
+        await doneDialog.ShowDialog(
+            App.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop 
+            ? desktop.MainWindow : null);
+    }
+
+
+
     private void OpenKR()
     {
         OpenDialogue(KRDialogue);
@@ -85,19 +113,32 @@ public class EventEditViewModel : ObservableObject
     {
         OpenDialogue(ENDialogue);
     }
-    private void OpenDialogue(string path)
+    private async void OpenDialogue(string path)
     {
-        if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
-            return;
+        bool fileExists = File.Exists(path);
 
+        // 파일이 없으면 디렉터리 생성 + 빈 파일 생성
+        var dir = Path.GetDirectoryName(path);
+        if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        if (!fileExists)
+            File.WriteAllText(path, "{}"); // 기본 JSON 내용
+
+        // ProcessStartInfo 설정
         var psi = new ProcessStartInfo
         {
             FileName = AppSettings.DIALOGUEAPPLOC,
-            Arguments = $"\"{path}\"",
+            Arguments = fileExists 
+                ? $"\"{path}\""       // 기존 파일이면 파일 경로만
+                : $"\"{path}\" new",   // 새로 만든 파일이면 "뉴" 인자 추가
             UseShellExecute = true
         };
+
         Process.Start(psi);
     }
+
+
     private void OnSave()
     {
         // 유효성 검사 로직을 여기에 추가할 수 있습니다.
@@ -112,5 +153,33 @@ public class EventEditViewModel : ObservableObject
         // 취소되었음을 알리고 모달을 닫습니다.
         Completion.SetResult(false);
     }
+   
+   private async Task<bool> EnsureFileExists(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        var dir = Path.GetDirectoryName(path);
+        if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+
+        if (!File.Exists(path))
+        {
+            // 파일이 없으면 빈 파일 생성
+            File.WriteAllText(path, "{}"); // 기본 JSON 내용
+            return true;
+        }
+
+        // 이미 파일이 존재하면 덮어쓰기 여부 확인
+        var dialog = new Views.ConfirmDialog($"이미 파일이 존재합니다:\n{path}\n덮어쓰시겠습니까?");
+        var result = await dialog.ShowDialog<bool>(
+            App.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop 
+            ? desktop.MainWindow : null);
+
+        return dialog.Result; // true면 덮어쓰기 진행
+    }
+
 }
 
