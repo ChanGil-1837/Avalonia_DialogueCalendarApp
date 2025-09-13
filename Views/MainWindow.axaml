@@ -15,6 +15,11 @@
         <!-- 왼쪽 메뉴 바 -->
         <StackPanel Grid.Column="0" Background="#1E1E2F" Orientation="Vertical">
             <Button Content="📂 열기" Margin="5" Foreground="White" Command="{Binding TogglePanelCommand}"/>
+            <!-- 설정 버튼 -->
+            <Button Content="⚙ 설정" Margin="5" Foreground="White" Command="{Binding OpenSettingsCommand}"/>
+            
+            <!-- 선택한 파일 이름 표시 -->
+            <TextBlock Text="{Binding SelectedFileName}" Margin="5" Foreground="White" TextWrapping="Wrap"/>
         </StackPanel>
 
         <!-- 슬라이드 되는 패널 -->

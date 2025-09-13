@@ -1,0 +1,716 @@
+{
+    "id": 4380528224,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 2583015778768,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -986.9875,
+            "pos_y": -255.525,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2583015778288,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015779344,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -348.69999999999993,
+            "pos_y": -242.01249999999982,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015642880,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015642640,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}역에서 오늘 촬영한 나나의 사진을 다시 보고 있다.{stop}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015642064,
+            "title": "event",
+            "name": 0,
+            "pos_x": -335.0,
+            "pos_y": -608.8000000000002,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2583015641536,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point0,cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015641824,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 422.79999999999995,
+            "pos_y": -254.60000000000002,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015641632,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015641488,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}벨소리가 울리길래 무심코 핸드폰을 보니 나나의 전화다.\n받아 보자.{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015641344,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 735.2,
+            "pos_y": -239.20000000000005,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015604128,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015604080,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "야!!! 너 죽을래? 나한테 걸리면....."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015604176,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1132.0,
+            "pos_y": -241.60000000000002,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015603456,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015603744,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "와우.....{stop}살벌한 단어들에 스피커에서 귀를 뗀다.{stop}.....{stop}\n스피커 너머의 소리가 조금 진정된 것 같다{stop}다시 스피커에 귀를 대보자"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015642208,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 1533.6000000000004,
+            "pos_y": -244.80000000000007,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015642448,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015643264,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "야! 너 내 가방 들고 갔지! 확인해 봐!"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015643408,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 1915.0,
+            "pos_y": -249.79999999999995,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015643072,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015642928,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "뭐라고? 가방이 바뀌었다고? 잠시만."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015643024,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 2067.15,
+            "pos_y": -723.2249999999999,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015747888,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015747792,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "아니야! 내 가방 열지 마! 너 내가 방 뒤지면 죽을 줄 알아!"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015642544,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 2497.162500000001,
+            "pos_y": -110.77500000000032,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015642832,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015641920,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "부스럭거리는 소리에 나나가 화들짝 놀라 소리친다.{stop}\n뭐 어쩌라는 걸까.... 가방을 유심히 바라보니 나나의 말대로 내 가방이 아닌 것 같다."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015642160,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 3159.474999999999,
+            "pos_y": 108.58749999999993,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015747648,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015747696,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "음.... 네가 내 가방을 가지고 간 게 아닐까? 먼저 챙겨서 가져간."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015748080,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 3388.7999999999993,
+            "pos_y": -268.80000000000007,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015749040,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015748608,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "풋! 너 집 열쇠 가방에 있더라?"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015748896,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 3725.6000000000013,
+            "pos_y": -270.40000000000015,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015748560,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015748320,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "음?!"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2583015748176,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 5438.849999999999,
+            "pos_y": -197.14999999999998,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2583015748704,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2583015748464,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "오늘따라 하루가 유난히 길어진 느낌이다.{0}{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4733418816,
+            "title": "event",
+            "name": 0,
+            "pos_x": 4899.200000000002,
+            "pos_y": -529.6000000000001,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4733418960,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nscene = studio\neventcomplete\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452158832,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 33.60000000000003,
+            "pos_y": -251.20000000000002,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452159840,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452158544,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "인정하기 싫지만 예쁘기는 하다."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452158352,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 4117.5999999999985,
+            "pos_y": -237.59999999999997,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452157440,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452157008,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "하..... 처음에는 나나한테서 주도권을 잡아보나 했다."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452240848,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 4529.000000000001,
+            "pos_y": -234.40000000000003,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452240896,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452240752,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "결국 아쉬운건 나다....."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2144816248864,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 4934.5999999999985,
+            "pos_y": -201.8,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2144817624688,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2144817624736,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "알았어....잠시만 기다려"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2452596883760,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 2853.6250000000005,
+            "pos_y": -400.51250000000016,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2452596884336,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2452596884384,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "사용 흔적이 미묘하게 다르고{stop}언뜻 열었을 때 본 내용물도 확연하게 다른 실루엣이었다."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2471772658992,
+            "title": "sound",
+            "name": 0,
+            "pos_x": 357.4,
+            "pos_y": -683.6000000000004,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2471772659280,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\nstop\nalarm"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2471772669120,
+            "title": "sound",
+            "name": 0,
+            "pos_x": -76.0,
+            "pos_y": -718.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2471772669312,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nrepeat\nalarm"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 2583015778432,
+            "edge_type": 1,
+            "start": 2583015778288,
+            "end": 2583015642880
+        },
+        {
+            "id": 2583015642112,
+            "edge_type": 1,
+            "start": 2583015641536,
+            "end": 2583015642880
+        },
+        {
+            "id": 2583015641200,
+            "edge_type": 1,
+            "start": 2583015641488,
+            "end": 2583015604128
+        },
+        {
+            "id": 2583015727008,
+            "edge_type": 1,
+            "start": 2583015604080,
+            "end": 2583015603456
+        },
+        {
+            "id": 2583015642496,
+            "edge_type": 1,
+            "start": 2583015603744,
+            "end": 2583015642448
+        },
+        {
+            "id": 2583015643120,
+            "edge_type": 1,
+            "start": 2583015643264,
+            "end": 2583015643072
+        },
+        {
+            "id": 2583015725424,
+            "edge_type": 1,
+            "start": 2583015642928,
+            "end": 2583015747888
+        },
+        {
+            "id": 2583015642400,
+            "edge_type": 1,
+            "start": 2583015747792,
+            "end": 2583015642832
+        },
+        {
+            "id": 2583015748800,
+            "edge_type": 1,
+            "start": 2583015747696,
+            "end": 2583015749040
+        },
+        {
+            "id": 2583015748848,
+            "edge_type": 1,
+            "start": 2583015748608,
+            "end": 2583015748560
+        },
+        {
+            "id": 4302763264,
+            "edge_type": 1,
+            "start": 4733418960,
+            "end": 2583015748704
+        },
+        {
+            "id": 1554452159744,
+            "edge_type": 1,
+            "start": 2583015642640,
+            "end": 1554452159840
+        },
+        {
+            "id": 1554452158400,
+            "edge_type": 1,
+            "start": 1554452158544,
+            "end": 2583015641632
+        },
+        {
+            "id": 1554452240560,
+            "edge_type": 1,
+            "start": 2583015748320,
+            "end": 1554452157440
+        },
+        {
+            "id": 1554452241040,
+            "edge_type": 1,
+            "start": 1554452157008,
+            "end": 1554452240896
+        },
+        {
+            "id": 2144816248720,
+            "edge_type": 1,
+            "start": 1554452240752,
+            "end": 2144817624688
+        },
+        {
+            "id": 2144816249152,
+            "edge_type": 1,
+            "start": 2144817624736,
+            "end": 2583015748704
+        },
+        {
+            "id": 2452596883664,
+            "edge_type": 1,
+            "start": 2583015641920,
+            "end": 2452596884336
+        },
+        {
+            "id": 2452596884432,
+            "edge_type": 1,
+            "start": 2452596884384,
+            "end": 2583015747648
+        },
+        {
+            "id": 2471772669024,
+            "edge_type": 1,
+            "start": 2471772659280,
+            "end": 2583015641632
+        },
+        {
+            "id": 2473785544912,
+            "edge_type": 1,
+            "start": 2471772669312,
+            "end": 2583015641632
+        }
+    ]
+}

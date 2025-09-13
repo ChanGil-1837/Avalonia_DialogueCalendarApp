@@ -1,0 +1,213 @@
+{
+    "id": 4380528224,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 2522371851744,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -395.3124999999999,
+            "pos_y": -45.31250000000014,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2522468029008,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": "time=noon"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2522371852704,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 502.8874999999997,
+            "pos_y": -6.962500000000013,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2522468030304,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2522468030352,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "It feels like I’ve been on this island for a while now,\nbut the monorail still amazes me — even now."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2522468028912,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 23.75,
+            "pos_y": 0.6249999999999929,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2522468030592,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2522468030640,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}As I’m looking over the route map at the station,\nthe line I need to take pulls in."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2522468031120,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1004.125,
+            "pos_y": -12.062500000000036,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2522468031312,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2522468031360,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "The announcement chimes on the monorail — it’s my stop.\nTime to get off and head to the studio.{1}{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2017774134416,
+            "title": "event",
+            "name": 0,
+            "pos_x": -406.25,
+            "pos_y": -306.25,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2017774134608,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point0,cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4768363920,
+            "title": "event",
+            "name": 0,
+            "pos_x": 613.0,
+            "pos_y": -353.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4768364016,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nscene = city"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4373565120,
+            "title": "event",
+            "name": 0,
+            "pos_x": 746.3999999999999,
+            "pos_y": -486.4,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4805239312,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\neventcomplete"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 2522468030400,
+            "edge_type": 1,
+            "start": 2522468030640,
+            "end": 2522468030304
+        },
+        {
+            "id": 2522468030784,
+            "edge_type": 1,
+            "start": 2522468029008,
+            "end": 2522468030592
+        },
+        {
+            "id": 2522371753536,
+            "edge_type": 1,
+            "start": 2522468030352,
+            "end": 2522468031312
+        },
+        {
+            "id": 2017774134800,
+            "edge_type": 1,
+            "start": 2017774134608,
+            "end": 2522468030592
+        },
+        {
+            "id": 4768363872,
+            "edge_type": 1,
+            "start": 4768364016,
+            "end": 2522468031312
+        },
+        {
+            "id": 4805240032,
+            "edge_type": 1,
+            "start": 4805239312,
+            "end": 2522468031312
+        }
+    ]
+}

@@ -1,0 +1,152 @@
+{
+    "id": 4395090336,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 4395098736,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -350.0,
+            "pos_y": -250.0,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4395099072,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4394149648,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -59.0,
+            "pos_y": -238.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4394149968,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4394150288,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}후... 생각보다 챙긴게 많네,\n뭐부터 정리할까?\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4394150608,
+            "title": "event",
+            "name": 0,
+            "pos_x": -407.0,
+            "pos_y": -467.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4395829104,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point0, cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4395830320,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 310.0,
+            "pos_y": -326.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4395830624,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4395732720,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4395830928,
+            "title": "event",
+            "name": 0,
+            "pos_x": -19.0,
+            "pos_y": -532.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4394185280,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ntime = afternoon\nend"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 4395099408,
+            "edge_type": 1,
+            "start": 4395099072,
+            "end": 4394149968
+        },
+        {
+            "id": 4394150928,
+            "edge_type": 1,
+            "start": 4395829104,
+            "end": 4394149968
+        },
+        {
+            "id": 4395831232,
+            "edge_type": 1,
+            "start": 4394185280,
+            "end": 4395830624
+        },
+        {
+            "id": 4395831536,
+            "edge_type": 1,
+            "start": 4394150288,
+            "end": 4395830624
+        }
+    ]
+}

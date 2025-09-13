@@ -10,9 +10,24 @@ using Avalonia.Controls;
 using Avalonia.Animation;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
+using System.Text.Json;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {
+    private string selectedFileName = AppSettings.DIALOGUEAPPLOC;
+
+    public string SelectedFileName
+    {
+        get => selectedFileName;
+        set
+        {
+            if (selectedFileName != value)
+            {
+                selectedFileName = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     string eventListPath = "";
     public ObservableCollection<FolderItem> FolderList { get; set; } = new();
@@ -50,8 +65,10 @@ public class MainWindowViewModel : INotifyPropertyChanged
     public ICommand TogglePanelCommand { get; }
     public ICommand OpenFolderCommand { get; }
 
+    public ICommand OpenSettingsCommand { get; }
     public MainWindowViewModel()
     {
+        LoadDialogueAppPath();
         TogglePanelCommand = new RelayCommand(async _ =>
         {
             Console.WriteLine("버튼 눌림!");
@@ -77,19 +94,46 @@ public class MainWindowViewModel : INotifyPropertyChanged
                 if (CurrentPage is CalendarPageViewModel monthPageViewModel)
                 {
                     // 3. 변환에 성공했다면 메서드를 호출하여 값을 넘겨줍니다.
-                    monthPageViewModel.SetMonth(upperName,eventListPath);
+                    monthPageViewModel.SetMonth(upperName, eventListPath);
                 }
             }
             else
             {
                 CurrentPage = pages[2];
             }
-            
-        });
 
+        });
+        OpenSettingsCommand = new RelayCommand(async () => await OpenSettings());
         _CurrentPage = pages[0];
     }
+    private async Task OpenSettings()
+    {
+        var dlg = new OpenFileDialog
+        {
+            Title = "파일 선택",
+            AllowMultiple = false
+        };
 
+        var result = await dlg.ShowAsync(App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop 
+                                        ? desktop.MainWindow 
+                                        : null);
+
+        if (result != null && result.Length > 0)
+        {
+            SelectedFileName = result[0]; // 버튼 아래 표시
+
+            AppSettings.DIALOGUEAPPLOC = SelectedFileName;
+
+            CalendarSettings.Instance.Save();
+
+        }
+    }
+    private void LoadDialogueAppPath()
+    {
+        CalendarSettings.Instance.Load();
+        SelectedFileName = CalendarSettings.Instance.DialogueAppPath;
+        AppSettings.DIALOGUEAPPLOC = CalendarSettings.Instance.DialogueAppPath;
+    }
     private readonly PageViewModelBase[] pages =
     {
         new FirstPageViewModel(),

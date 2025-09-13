@@ -1,0 +1,186 @@
+{
+    "id": 4395090336,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 4416715728,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -350.0,
+            "pos_y": -250.0,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4416600912,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4416716000,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -70.0,
+            "pos_y": -232.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4416601168,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4418117920,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}누워서 창문을보니 벌써 해가 지고있다.\n드디어 시작이구나"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4416601680,
+            "title": "event",
+            "name": 0,
+            "pos_x": -365.0,
+            "pos_y": -409.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4418667248,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point1, cut1"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4418118400,
+            "title": "event",
+            "name": 0,
+            "pos_x": 425.0,
+            "pos_y": -415.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4418419408,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ntime=end\nend"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4418118640,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 356.0,
+            "pos_y": -224.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4416615248,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4416615056,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "낯선 환경이랑 이사 피로로 잠이 온다.\n{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4397497296,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 824.0,
+            "pos_y": -236.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4397382480,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4397382736,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 4418556144,
+            "edge_type": 1,
+            "start": 4418667248,
+            "end": 4416601168
+        },
+        {
+            "id": 4418457328,
+            "edge_type": 1,
+            "start": 4416600912,
+            "end": 4416601168
+        },
+        {
+            "id": 4416716272,
+            "edge_type": 1,
+            "start": 4418117920,
+            "end": 4416615248
+        },
+        {
+            "id": 4399042288,
+            "edge_type": 1,
+            "start": 4416615056,
+            "end": 4397382480
+        },
+        {
+            "id": 4397497568,
+            "edge_type": 1,
+            "start": 4418419408,
+            "end": 4397382480
+        }
+    ]
+}

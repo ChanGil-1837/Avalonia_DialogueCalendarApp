@@ -75,7 +75,7 @@ namespace DialogueCalendarApp.ViewModels
 
     public class CalendarPageViewModel : PageViewModelBase
     {
-        private Dictionary<string, DayOfWeek> _monthStartDays = new(); // 저장용: 월별 시작 요일
+        private Dictionary<string, int> _monthStartDays = new(); // 저장용: 월별 시작 요일
 
         // 시작 요일 선택용
         private DayOfWeek _selectedStartDay = DayOfWeek.Sunday;
@@ -207,9 +207,11 @@ namespace DialogueCalendarApp.ViewModels
             if (!File.Exists(_csvPath)) return;
 
             var events = ParseCsv(_csvPath);
-
+            var i = CalendarSettings.Instance.MonthStartDays;
             // 첫 요일 결정: 사용자 선택 > 저장된 값 > 기본 Sunday
-            DayOfWeek firstDay = firstDayOverride ?? (_monthStartDays.ContainsKey(monthName) ? _monthStartDays[monthName] : DayOfWeek.Sunday);
+            DayOfWeek firstDay = firstDayOverride ?? (CalendarSettings.Instance.MonthStartDays.ContainsKey(monthName) 
+                                                    ? (DayOfWeek)CalendarSettings.Instance.MonthStartDays[monthName] 
+                                                    : DayOfWeek.Sunday);
 
             if (!DateTime.TryParseExact(monthName, "MMM", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt)) return;
             int monthNumber = dt.Month;
@@ -217,61 +219,18 @@ namespace DialogueCalendarApp.ViewModels
             GenerateMonthDays(monthNumber, events, firstDay);
 
             // 선택 요일 저장
-            _monthStartDays[monthName] = firstDay;
+            CalendarSettings.Instance.MonthStartDays[monthName] = (int)firstDay;
 
-            SaveSettings();
+            // 현재 앱 경로도 업데이트
+            CalendarSettings.Instance.DialogueAppPath = AppSettings.DIALOGUEAPPLOC;
 
-        }
-
-         public void SaveSettings()
-        {
-            try
-            {
-                // Create the directory if it doesn't exist
-                Directory.CreateDirectory(AppSettings.AppDataFolder);
-
-                // Create a settings object and populate it with the dictionary
-                var settings = new CalendarSettings
-                {
-                    MonthStartDays = _monthStartDays
-                };
-
-                // Serialize the object to a JSON string
-                var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
-
-                // Write the JSON string to the file
-                File.WriteAllText(AppSettings.SettingsFilePath, json);
-            }
-            catch (Exception ex)
-            {
-                // In a real app, you would use a logger
-                Console.WriteLine($"Failed to save settings: {ex.Message}");
-            }
+            // 변경 사항 저장
+            CalendarSettings.Instance.Save();
         }
 
         private void LoadSettings()
         {
-            if (File.Exists(AppSettings.SettingsFilePath))
-            {
-                try
-                {
-                    // Read the JSON string from the file
-                    var json = File.ReadAllText(AppSettings.SettingsFilePath);
-
-                    // Deserialize the JSON string to the CalendarSettings object
-                    var settings = JsonSerializer.Deserialize<CalendarSettings>(json);
-
-                    // Update the ViewModel's dictionary with the loaded data
-                    if (settings?.MonthStartDays != null)
-                    {
-                        _monthStartDays = settings.MonthStartDays;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to load settings: {ex.Message}");
-                }
-            }
+            _monthStartDays = CalendarSettings.Instance.MonthStartDays;
         }
     
 
@@ -346,8 +305,5 @@ namespace DialogueCalendarApp.ViewModels
         }
     }
     
-    public class CalendarSettings
-    {
-        public Dictionary<string, DayOfWeek> MonthStartDays { get; set; } = new Dictionary<string, DayOfWeek>();
-    }
+
 }

@@ -1,0 +1,240 @@
+{
+    "id": 4380528224,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 2107755017216,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -766.5781250000001,
+            "pos_y": -393.234375,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2107755057264,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2107755095712,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -191.59999999999997,
+            "pos_y": -506.25,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2107755095856,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2107755095904,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}After getting off at the station and walking a bit, the studio building comes into view."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2107755131280,
+            "title": "event",
+            "name": 0,
+            "pos_x": -522.5,
+            "pos_y": -785.0999999999999,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2107755131568,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point0,cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2330622501792,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 210.5,
+            "pos_y": -505.5,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2330622501936,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2330622501984,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}It’s a bigger building than I expected."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2330534785856,
+            "title": "event",
+            "name": 0,
+            "pos_x": 175.0,
+            "pos_y": -813.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2330534786144,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set =,cut1"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2330534785904,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 609.25,
+            "pos_y": -508.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2330534786288,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2330534786336,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}I steel myself and step into the studio.{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2330534786576,
+            "title": "event",
+            "name": 0,
+            "pos_x": 650.0,
+            "pos_y": -840.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2330534786720,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set =,cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2330534787104,
+            "title": "event",
+            "name": 0,
+            "pos_x": 926.25,
+            "pos_y": -723.75,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2330534786768,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\neventcomplete\nscene = studio\n\n"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 2107755131856,
+            "edge_type": 1,
+            "start": 2107755057264,
+            "end": 2107755095856
+        },
+        {
+            "id": 2107755131904,
+            "edge_type": 1,
+            "start": 2107755131568,
+            "end": 2107755095856
+        },
+        {
+            "id": 2330622502656,
+            "edge_type": 1,
+            "start": 2107755095904,
+            "end": 2330622501936
+        },
+        {
+            "id": 2330534785808,
+            "edge_type": 1,
+            "start": 2330534786144,
+            "end": 2330622501936
+        },
+        {
+            "id": 2330534785952,
+            "edge_type": 1,
+            "start": 2330622501984,
+            "end": 2330534786288
+        },
+        {
+            "id": 2330534786384,
+            "edge_type": 1,
+            "start": 2330534786720,
+            "end": 2330534786288
+        },
+        {
+            "id": 2330534786912,
+            "edge_type": 1,
+            "start": 2330534786768,
+            "end": 2330534786288
+        }
+    ]
+}

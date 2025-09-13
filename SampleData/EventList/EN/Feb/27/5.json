@@ -1,0 +1,1577 @@
+{
+    "id": 4303670976,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 4647560848,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -352.0,
+            "pos_y": -258.0,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4647628640,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4303339888,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -72.0,
+            "pos_y": -258.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4647752752,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4647752656,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}As I open the door and step inside, I feel the familiar heat of studio lights filling the spacious room.\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4647754048,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 269.0,
+            "pos_y": -272.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4647754240,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4647754144,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Just as I'm hesitating in the unexpectedly large studio, wondering where to go, I hear a voice—as if it's calling me.\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4647835152,
+            "title": "Normal",
+            "name": -1,
+            "pos_x": 691.0,
+            "pos_y": -278.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4647833232,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4647835440,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}Over here!"
+            },
+            "dir_name": "staff"
+        },
+        {
+            "id": 4647839568,
+            "title": "event",
+            "name": 0,
+            "pos_x": -225.0,
+            "pos_y": -764.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4647840288,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point0, cut0"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4647841152,
+            "title": "event",
+            "name": 0,
+            "pos_x": 642.0,
+            "pos_y": -704.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4647841200,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\ncamera_set = c_point, cut1"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4647840576,
+            "title": "event",
+            "name": 0,
+            "pos_x": 1017.0,
+            "pos_y": -733.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4647840672,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "2\nspawn = extra_1, cut1\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4647837840,
+            "title": "effect",
+            "name": 0,
+            "pos_x": 224.0,
+            "pos_y": -749.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4647837120,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ntap\nmid_right"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4652975408,
+            "title": "Normal",
+            "name": -1,
+            "pos_x": 1062.0,
+            "pos_y": -278.8,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4652975744,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4652975648,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{2}{1}So you’re the one XX that sunbae mentioned. Looking forward to working with you today. "
+            },
+            "dir_name": "staff"
+        },
+        {
+            "id": 4597957120,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1674.4000000000005,
+            "pos_y": -313.6,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4597957312,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4597957216,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}At the staff member’s suggestion, I take a look around the studio.\n{1}{stop}{2}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4597966096,
+            "title": "event",
+            "name": 0,
+            "pos_x": 1387.2000000000003,
+            "pos_y": -704.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4597966192,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = ,cut2"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4597969168,
+            "title": "event",
+            "name": 0,
+            "pos_x": 1689.7843749999997,
+            "pos_y": -913.5031250000002,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4597969264,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\ncamera_set = ,cut4"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4597967392,
+            "title": "event",
+            "name": 0,
+            "pos_x": 2007.5390624999995,
+            "pos_y": -682.2312499999998,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4597967440,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "2\ncamera_set = ,cut1"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730581312,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 2111.0,
+            "pos_y": -323.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730896704,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730896752,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Following the staff's explanation, my eyes naturally drift to the documents laid out on the desk."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730583568,
+            "title": "effect",
+            "name": 0,
+            "pos_x": -1926.3906249999986,
+            "pos_y": -209.8781250000004,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4730581168,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ntap\nmid_left"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730584432,
+            "title": "event",
+            "name": 0,
+            "pos_x": -1235.5906249999998,
+            "pos_y": -193.17812500000014,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4730575552,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\ncamera_set = ,cut4"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730584144,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -466.59999999999945,
+            "pos_y": 111.92500000000001,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730584768,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730575600,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "So focused on the explanation, I don't even notice the model approaching—until a sound draws my attention, and I instinctively turn my head."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730584096,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": -44.63450622558412,
+            "pos_y": 100.03483581542952,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730575312,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730574256,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{surprise}....{idle}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730583760,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 382.3654937744159,
+            "pos_y": 114.03483581542952,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730584816,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730584960,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "...."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730582080,
+            "title": "Node",
+            "name": 2,
+            "pos_x": 755.3654937744159,
+            "pos_y": 100.03483581542952,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730582224,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730581888,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{smile}Hello. Nice to meet you. {idle} I'm Nana.\nYou're the photographer for today's shoot, right? I'm looking forward to working with you."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4375378496,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1249.3654937744159,
+            "pos_y": 97.4348358154295,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730897184,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730897616,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "!!{stop}She beat me to it. \nBut more than that...{stop}\nThere’s a silent pressure in her intense gaze—telling me to keep up with her."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4378792768,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1734.9654937744162,
+            "pos_y": 93.4348358154295,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730897712,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730898240,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I can't just stand here and take it—\nmaybe it's time for a quiet little pushback."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730897568,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 2046.1654937744165,
+            "pos_y": 43.03483581542949,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730896560,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730897376,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "too busy for class projects\nYes, looking forward to it.\nYou’re always "
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730579968,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 2741.165493774417,
+            "pos_y": 35.8348358154295,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730580736,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730578240,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{angry}Hey!"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730579200,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 3026.9654937744162,
+            "pos_y": 26.234835815429562,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730583328,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730580928,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "People nearby turn to look."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730580400,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": 3431.365493774416,
+            "pos_y": 34.03483581542952,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730579632,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730580112,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{smile}Once again,{idle} I’m looking forward to working with you."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730580208,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 3818.365493774416,
+            "pos_y": 36.03483581542952,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730580544,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730579920,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Her quick reaction is honestly impressive."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730317872,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": -362.30234374999776,
+            "pos_y": 705.5976562499998,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730899632,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730902416,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{smile}Let’s talk after the shoot for now.{stop}{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730900640,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 7.19999999999996,
+            "pos_y": 701.2000000000003,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730905920,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730898960,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}Leaving Nana behind as she heads into the waiting room to prepare for the shoot,"
+            },
+            "dir_name": "스테프"
+        },
+        {
+            "id": 4730907216,
+            "title": "effect",
+            "name": 0,
+            "pos_x": -450.0,
+            "pos_y": 457.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4730907888,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nfade_in"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4730581600,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 842.2000000000002,
+            "pos_y": 701.8000000000001,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4730907456,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4730907792,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I lower my head once more to adjust the camera settings.{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727504288,
+            "title": "event",
+            "name": 0,
+            "pos_x": 64.0,
+            "pos_y": 431.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4727504384,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point2, cut5"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727964688,
+            "title": "event",
+            "name": 0,
+            "pos_x": 559.6000000000001,
+            "pos_y": 415.20000000000005,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4727964784,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = , cut6"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727965168,
+            "title": "Normal",
+            "name": -1,
+            "pos_x": 1291.9999999999998,
+            "pos_y": 698.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4727966560,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4727966368,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "We’ll begin the shoot now.{0}"
+            },
+            "dir_name": "staff"
+        },
+        {
+            "id": 4727966800,
+            "title": "event",
+            "name": 0,
+            "pos_x": 1006.6000000000004,
+            "pos_y": 420.20000000000005,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4727965456,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nspawn = nana_bikini,summon2\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727965936,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1679.4499999999998,
+            "pos_y": 696.05,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4727967712,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4727966224,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I'm doing a final check on the camera, fully focused,\nwhen a staff member’s voice pulls my gaze up to the platform.{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727967568,
+            "title": "event",
+            "name": 0,
+            "pos_x": 1434.7999999999997,
+            "pos_y": 425.5999999999999,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4727965792,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = ,cut5"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4727967520,
+            "title": "event",
+            "name": 0,
+            "pos_x": -1579.5906249999994,
+            "pos_y": -211.77812500000005,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4727969968,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\nspawn = nana_normal, summon1"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2052763977760,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1611.25,
+            "pos_y": 1072.5,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2052763977904,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2052763977952,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": ".....{stop}\nStanding there wasn’t the Nana who always skipped out on group projects{stop}\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2052756665344,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 2995.6000000000013,
+            "pos_y": 715.6000000000001,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2052756665488,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2052756665536,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "After wrapping up with quick goodbyes to the staff, I guess it’s time to head home too."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2052757538128,
+            "title": "event",
+            "name": 0,
+            "pos_x": 3348.8,
+            "pos_y": 380.0000000000001,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2052757537696,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nscene = dressing_room"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4312026816,
+            "title": "event",
+            "name": 0,
+            "pos_x": 3007.2000000000003,
+            "pos_y": 376.8000000000001,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4743059488,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\neventcomplete"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452350576,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 432.79999999999995,
+            "pos_y": 703.2,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452350720,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452350768,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I look toward the cyclorama, picturing today’s composition in my head."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554395788336,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 2584.2000000000007,
+            "pos_y": 716.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554395788288,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554395788240,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Before I even realized it, the shoot was over—like I’d been in a daze the whole time."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554395787856,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 3393.800000000001,
+            "pos_y": 711.5999999999999,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554395787616,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554395787376,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I stepped into the storage room to grab my bag.{stop}{1}{0}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2405208863456,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 2317.0,
+            "pos_y": 1100.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2405208863600,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2405208863648,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Uh... We’ll begin the shoot now."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2424635319536,
+            "title": "Normal",
+            "name": -1,
+            "pos_x": 1360.2000000000003,
+            "pos_y": -332.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2424691168640,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2424691168976,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "The studio will be ready soon, so once you're done talking, take a look around."
+            },
+            "dir_name": "staff"
+        },
+        {
+            "id": 2424691167824,
+            "title": "Normal",
+            "name": 1,
+            "pos_x": 2359.2,
+            "pos_y": 148.79999999999995,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2424691168928,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2424691168544,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "so busy yet somehow, you made tim...."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2424691168496,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1867.0,
+            "pos_y": 1508.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2424643947488,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2424643947680,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "but a professional model, poised and stunning."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2374411593808,
+            "title": "Normal",
+            "name": 2,
+            "pos_x": -839.1640624999991,
+            "pos_y": 87.49609374999994,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2374386286496,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2374391766032,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}{smile}I’m looking forward to working with you today!{idle}{1}"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 4299092864,
+            "edge_type": 1,
+            "start": 4647628640,
+            "end": 4647752752
+        },
+        {
+            "id": 4647835488,
+            "edge_type": 1,
+            "start": 4647752656,
+            "end": 4647754240
+        },
+        {
+            "id": 4647835056,
+            "edge_type": 1,
+            "start": 4647754144,
+            "end": 4647833232
+        },
+        {
+            "id": 4647841536,
+            "edge_type": 1,
+            "start": 4647840288,
+            "end": 4647752752
+        },
+        {
+            "id": 4647842544,
+            "edge_type": 1,
+            "start": 4647837120,
+            "end": 4647833232
+        },
+        {
+            "id": 4306116992,
+            "edge_type": 1,
+            "start": 4647841200,
+            "end": 4652975744
+        },
+        {
+            "id": 4652875744,
+            "edge_type": 1,
+            "start": 4647835440,
+            "end": 4652975744
+        },
+        {
+            "id": 4652976656,
+            "edge_type": 1,
+            "start": 4647840672,
+            "end": 4652975744
+        },
+        {
+            "id": 4597966528,
+            "edge_type": 1,
+            "start": 4597966192,
+            "end": 4597957312
+        },
+        {
+            "id": 4597969072,
+            "edge_type": 1,
+            "start": 4597969264,
+            "end": 4597957312
+        },
+        {
+            "id": 4597967296,
+            "edge_type": 1,
+            "start": 4597967440,
+            "end": 4597957312
+        },
+        {
+            "id": 4730584528,
+            "edge_type": 1,
+            "start": 4597957216,
+            "end": 4730896704
+        },
+        {
+            "id": 4730582848,
+            "edge_type": 1,
+            "start": 4730575600,
+            "end": 4730575312
+        },
+        {
+            "id": 4730584384,
+            "edge_type": 1,
+            "start": 4730574256,
+            "end": 4730584816
+        },
+        {
+            "id": 4730579392,
+            "edge_type": 1,
+            "start": 4730584960,
+            "end": 4730582224
+        },
+        {
+            "id": 4730317872,
+            "edge_type": 1,
+            "start": 4730581888,
+            "end": 4730897184
+        },
+        {
+            "id": 4730896512,
+            "edge_type": 1,
+            "start": 4730897616,
+            "end": 4730897712
+        },
+        {
+            "id": 4730898336,
+            "edge_type": 1,
+            "start": 4730898240,
+            "end": 4730896560
+        },
+        {
+            "id": 4730578384,
+            "edge_type": 1,
+            "start": 4730578240,
+            "end": 4730583328
+        },
+        {
+            "id": 4730580256,
+            "edge_type": 1,
+            "start": 4730580928,
+            "end": 4730579632
+        },
+        {
+            "id": 4730582128,
+            "edge_type": 1,
+            "start": 4730580112,
+            "end": 4730580544
+        },
+        {
+            "id": 4730898816,
+            "edge_type": 1,
+            "start": 4730579920,
+            "end": 4730899632
+        },
+        {
+            "id": 4730898912,
+            "edge_type": 1,
+            "start": 4730902416,
+            "end": 4730905920
+        },
+        {
+            "id": 4730581696,
+            "edge_type": 1,
+            "start": 4730907888,
+            "end": 4730899632
+        },
+        {
+            "id": 4727202368,
+            "edge_type": 1,
+            "start": 4727504384,
+            "end": 4730905920
+        },
+        {
+            "id": 4727964496,
+            "edge_type": 1,
+            "start": 4727964784,
+            "end": 4730907456
+        },
+        {
+            "id": 4727964928,
+            "edge_type": 1,
+            "start": 4730907792,
+            "end": 4727966560
+        },
+        {
+            "id": 4727965696,
+            "edge_type": 1,
+            "start": 4727965456,
+            "end": 4727966560
+        },
+        {
+            "id": 4727965552,
+            "edge_type": 1,
+            "start": 4727966368,
+            "end": 4727967712
+        },
+        {
+            "id": 4368508032,
+            "edge_type": 1,
+            "start": 4727965792,
+            "end": 4727967712
+        },
+        {
+            "id": 2052757540816,
+            "edge_type": 1,
+            "start": 4727966224,
+            "end": 2052763977904
+        },
+        {
+            "id": 1554452351200,
+            "edge_type": 1,
+            "start": 4730898960,
+            "end": 1554452350720
+        },
+        {
+            "id": 1554452242240,
+            "edge_type": 1,
+            "start": 1554452350768,
+            "end": 4730907456
+        },
+        {
+            "id": 1554395787904,
+            "edge_type": 1,
+            "start": 1554395788240,
+            "end": 2052756665488
+        },
+        {
+            "id": 1554395787808,
+            "edge_type": 1,
+            "start": 2052756665536,
+            "end": 1554395787616
+        },
+        {
+            "id": 1554395787568,
+            "edge_type": 1,
+            "start": 4743059488,
+            "end": 1554395787616
+        },
+        {
+            "id": 1554395787472,
+            "edge_type": 1,
+            "start": 2052757537696,
+            "end": 1554395787616
+        },
+        {
+            "id": 2405208864176,
+            "edge_type": 1,
+            "start": 2405208863648,
+            "end": 1554395788288
+        },
+        {
+            "id": 2424635319680,
+            "edge_type": 1,
+            "start": 4652975648,
+            "end": 2424691168640
+        },
+        {
+            "id": 2424635264976,
+            "edge_type": 1,
+            "start": 2424691168976,
+            "end": 4597957312
+        },
+        {
+            "id": 2424691169936,
+            "edge_type": 1,
+            "start": 4730897376,
+            "end": 2424691168928
+        },
+        {
+            "id": 2424691168784,
+            "edge_type": 1,
+            "start": 2424691168544,
+            "end": 4730580736
+        },
+        {
+            "id": 2424691167440,
+            "edge_type": 1,
+            "start": 2052763977952,
+            "end": 2424643947488
+        },
+        {
+            "id": 2424643947152,
+            "edge_type": 1,
+            "start": 2424643947680,
+            "end": 2405208863600
+        },
+        {
+            "id": 2374411595392,
+            "edge_type": 1,
+            "start": 4730896752,
+            "end": 2374386286496
+        },
+        {
+            "id": 2374411592464,
+            "edge_type": 1,
+            "start": 2374391766032,
+            "end": 4730584768
+        },
+        {
+            "id": 2374411595200,
+            "edge_type": 1,
+            "start": 4730581168,
+            "end": 2374386286496
+        },
+        {
+            "id": 2374393240112,
+            "edge_type": 1,
+            "start": 4727969968,
+            "end": 2374386286496
+        },
+        {
+            "id": 2374411921392,
+            "edge_type": 1,
+            "start": 4730575552,
+            "end": 2374386286496
+        }
+    ]
+}

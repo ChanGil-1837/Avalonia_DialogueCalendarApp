@@ -1,0 +1,308 @@
+{
+    "id": 4380528224,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 2808854043616,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -442.80000000000007,
+            "pos_y": -199.60000000000002,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2808762553680,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": ""
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2808804990688,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -49.39999999999998,
+            "pos_y": -107.00000000000009,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2808804990928,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2808804990496,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}Sigh... I’ve been sighing a lot more than usual today.\nThanks to that, I can hear rustling sounds coming from the storage room.{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2808804990064,
+            "title": "event",
+            "name": 0,
+            "pos_x": -475.20000000000005,
+            "pos_y": -486.6,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2808804987424,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ncamera_set = c_point3,cut7"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2808804990880,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1046.975,
+            "pos_y": -161.31250000000003,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2808804987232,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2808804987136,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Hey! I'm coming in!"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2808804987376,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 1424.1749999999993,
+            "pos_y": -165.51250000000002,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 2808804989632,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 2808804989824,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Just as I push the door halfway open, something grabs my wrist—hard. {0}{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2808773178704,
+            "title": "event",
+            "name": 0,
+            "pos_x": 639.1999999999999,
+            "pos_y": -476.4000000000002,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2808773177984,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\neventcomplete\nscene = sofa\n"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4741816560,
+            "title": "effect",
+            "name": 0,
+            "pos_x": 276.81250000000006,
+            "pos_y": -485.50000000000006,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4741816656,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\nfade_in"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 2877388353248,
+            "title": "effect",
+            "name": 0,
+            "pos_x": -508.0,
+            "pos_y": 57.59999999999991,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 2877388353056,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "1\nrustle\nmid"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452159504,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 345.6,
+            "pos_y": -112.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452158256,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452157104,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "Just a few hours ago, the studio was bustling with activity—now it’s silent. {stop}{1}"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 1554452240944,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 720.0000000000002,
+            "pos_y": -111.20000000000002,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 1554452351248,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1554452352784,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "I think Nana's in there. Let's go in and check."
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 2808804990880,
+            "edge_type": 1,
+            "start": 2808762553680,
+            "end": 2808804990928
+        },
+        {
+            "id": 2808804989728,
+            "edge_type": 1,
+            "start": 2808804987136,
+            "end": 2808804989632
+        },
+        {
+            "id": 4741811184,
+            "edge_type": 1,
+            "start": 2808804987424,
+            "end": 2808804990928
+        },
+        {
+            "id": 4741817232,
+            "edge_type": 1,
+            "start": 4741816656,
+            "end": 2808804989632
+        },
+        {
+            "id": 4733412528,
+            "edge_type": 1,
+            "start": 2808773177984,
+            "end": 2808804989632
+        },
+        {
+            "id": 2877388353488,
+            "edge_type": 1,
+            "start": 2877388353056,
+            "end": 2808804990928
+        },
+        {
+            "id": 1554452351200,
+            "edge_type": 1,
+            "start": 2808804990496,
+            "end": 1554452158256
+        },
+        {
+            "id": 1554452349280,
+            "edge_type": 1,
+            "start": 1554452157104,
+            "end": 1554452351248
+        },
+        {
+            "id": 1554452349184,
+            "edge_type": 1,
+            "start": 1554452352784,
+            "end": 2808804987232
+        }
+    ]
+}

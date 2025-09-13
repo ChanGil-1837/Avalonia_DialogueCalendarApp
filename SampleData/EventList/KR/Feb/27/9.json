@@ -1,0 +1,125 @@
+{
+    "id": 4308880896,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 4740769088,
+            "title": "Start Node",
+            "name": 0,
+            "pos_x": -350.0,
+            "pos_y": -250.0,
+            "type": 2,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4740820352,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 5
+                }
+            ],
+            "content": {
+                "content": "time = evening"
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4740960752,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": -56.0,
+            "pos_y": -245.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4740968912,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4740969008,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "오늘 정말 많은 일이 있었다."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4740970880,
+            "title": "Normal",
+            "name": 0,
+            "pos_x": 373.0,
+            "pos_y": -212.0,
+            "type": 0,
+            "inputs": [
+                {
+                    "id": 4740971072,
+                    "index": 0,
+                    "position": 1,
+                    "socket_type": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 4740970976,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 0
+                }
+            ],
+            "content": {
+                "content": "{0}톡이 왔다. 확인해보자."
+            },
+            "dir_name": ""
+        },
+        {
+            "id": 4741028208,
+            "title": "event",
+            "name": 0,
+            "pos_x": -4.0,
+            "pos_y": -473.0,
+            "type": 3,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 4741028304,
+                    "index": 0,
+                    "position": 3,
+                    "socket_type": 1
+                }
+            ],
+            "content": {
+                "content": "0\ntalk=talk_1"
+            },
+            "dir_name": ""
+        }
+    ],
+    "edges": [
+        {
+            "id": 4740969440,
+            "edge_type": 1,
+            "start": 4740820352,
+            "end": 4740968912
+        },
+        {
+            "id": 4740970928,
+            "edge_type": 1,
+            "start": 4740969008,
+            "end": 4740971072
+        },
+        {
+            "id": 4304643536,
+            "edge_type": 1,
+            "start": 4741028304,
+            "end": 4740971072
+        }
+    ]
+}
