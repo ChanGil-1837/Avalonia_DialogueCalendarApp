@@ -2,7 +2,7 @@
 
 ## 프로젝트 개요
 DialogueCalendarApp은 **DialogueEditor에서 만든 다이얼로그**와 **EventList.csv** 기반으로 이원화된 이벤트 및 다이얼로그를 효율적으로 관리하기 위한 **크로스 플랫폼 데스크탑 애플리케이션**입니다.  
-UI는 **Avalonia**를 기반으로 제작되었으며, **MVVM 디자인 패턴**으로 구조화되어 있습니다.  
+UI는 **Avalonia**를 .Net WPF 기반으로 제작되었으며, **MVVM 디자인 패턴**으로 구조화되어 있습니다.  
 
 샘플용 **EventList**와 **다이얼로그 파일**, 그리고 **DialogueEditor**도 함께 업로드되어 있습니다.  
 
