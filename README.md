@@ -21,13 +21,6 @@ UI는 **Avalonia**를 기반으로 제작되었으며, **MVVM 디자인 패턴**
 
 SampleData/ # 샘플 EventList.csv 및 다이얼로그 포함되어있습니다. (예정)
 
-
-## 실행 방법
-1. .NET SDK 8.0 이상 설치
-2. 프로젝트 클론
-   ```bash
-   git clone https://github.com/사용자/Avalonia_DialogueCalendarApp.git
-
 참고 사항
 현재 제공되는 EventList 및 다이얼로그는 샘플용입니다. 
 다이얼로그 에디터와의 연동을 테스트하기 위해 포함되어 있으며, 노드 5개 이상인 다이얼로그는 저장되지 않습니다.
