@@ -19,19 +19,8 @@ UI는 **Avalonia**를 기반으로 제작되었으며, **MVVM 디자인 패턴**
 
 ---
 
-## 프로젝트 구조
-DialogueCalendarApp/
-├─ Views/ # XAML UI 파일
-│ ├─ MainWindow.axaml
-│ ├─ EventEditWindow.axaml
-├─ ViewModels/ # ViewModel 클래스
-│ ├─ MainWindowViewModel.cs
-│ ├─ EventEditViewModel.cs
-├─ Models/ # 데이터 모델
-├─ Assets/ # 이미지 및 리소스
-├─ SampleData/ # 샘플 EventList.csv 및 다이얼로그
-├─ Program.cs # 앱 진입점
-└─ DialogueCalendarApp.csproj
+SampleData/ # 샘플 EventList.csv 및 다이얼로그 포함되어있습니다. (예정)
+
 
 ## 실행 방법
 1. .NET SDK 8.0 이상 설치
