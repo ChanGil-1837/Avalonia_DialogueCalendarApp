@@ -17,7 +17,6 @@
         <conv:ZeroToEmptyStringConverter x:Key="ZeroToEmptyString"/>
         <conv:TupleConverter x:Key="TupleConverter"/>
         <conv:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
-        <vm:CalendarPageViewModel x:Key="CalendarVM"/>
     </UserControl.Resources>
     <Design.DataContext>
         <vm:CalendarPageViewModel/>
@@ -128,7 +127,7 @@
                                                         CornerRadius="4"
                                                         HorizontalAlignment="Stretch"
                                                         VerticalAlignment="Stretch"
-                                                        Command="{Binding EditEventCommand, Source={StaticResource CalendarVM}}">
+                                                        Command="{Binding ((vm:CalendarPageViewModel)DataContext).EditEventCommand, RelativeSource={RelativeSource AncestorType=UserControl}}">
                                                         <Button.CommandParameter>
                                                             <MultiBinding Converter="{StaticResource TupleConverter}">
                                                                 <Binding Path="Id"/>
@@ -138,6 +137,7 @@
 
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="*"/>
@@ -153,6 +153,7 @@
 
                                                             <!-- ID 표시 -->
                                                             <TextBlock Grid.Column="2" Text="{Binding Id}" VerticalAlignment="Center"/>
+                                                            <TextBlock Grid.Column="3" Text="{Binding Desc}" VerticalAlignment="Center"/>
                                                         </Grid>
                                                     </Button>
                                                 </DataTemplate>

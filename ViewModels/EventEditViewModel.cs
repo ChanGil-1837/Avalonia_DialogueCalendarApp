@@ -34,11 +34,39 @@ public class EventEditViewModel : ObservableObject
         set => SetProperty(ref _date, value);
     }
 
+    public System.Array TimeSlots => System.Enum.GetValues(typeof(Models.TimeSlot));
+
+    private Models.TimeSlot _selectedTimeSlot;
+    public Models.TimeSlot SelectedTimeSlot
+    {
+        get => _selectedTimeSlot;
+        set
+        {
+            if (SetProperty(ref _selectedTimeSlot, value))
+            {
+                Time = value.ToString();
+            }
+        }
+    }
+
     private string _time = "";
     public string Time
     {
         get => _time;
-        set => SetProperty(ref _time, value);
+        set
+        {
+            if (SetProperty(ref _time, value))
+            {
+                if (System.Enum.TryParse<Models.TimeSlot>(value, true, out var timeSlot))
+                {
+                    SelectedTimeSlot = timeSlot;
+                }
+                else
+                {
+                    SelectedTimeSlot = Models.TimeSlot.none;
+                }
+            }
+        }
     }
 
 
@@ -141,18 +169,16 @@ public class EventEditViewModel : ObservableObject
 
     private void OnSave()
     {
-        // 유효성 검사 로직을 여기에 추가할 수 있습니다.
-        // 예를 들어: if (string.IsNullOrWhiteSpace(Location)) return;
-
-        // Save가 성공했음을 알리고 모달을 닫습니다.
-        Completion.SetResult(true);
+        if (!Completion.Task.IsCompleted)
+            Completion.SetResult(true);
     }
 
     private void OnCancel()
     {
-        // 취소되었음을 알리고 모달을 닫습니다.
-        Completion.SetResult(false);
+        if (!Completion.Task.IsCompleted)
+            Completion.SetResult(false);
     }
+
    
    private async Task<bool> EnsureFileExists(string path)
     {

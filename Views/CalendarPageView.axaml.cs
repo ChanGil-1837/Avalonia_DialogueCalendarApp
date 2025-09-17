@@ -8,7 +8,6 @@ namespace DialogueCalendarApp.Views
         public CalendarPageView()
         {
             InitializeComponent();
-            DataContext = new CalendarPageViewModel();
         }
     }
 }

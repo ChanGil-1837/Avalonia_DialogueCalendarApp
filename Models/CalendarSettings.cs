@@ -47,8 +47,7 @@ public class CalendarSettings
             try
             {
                 var json = File.ReadAllText(SettingsFilePath);
-                Console.WriteLine($"Loading settings from {SettingsFilePath}");
-                Console.WriteLine($"JSON content: {json}");
+
 
                 var options = new JsonSerializerOptions
                 {
@@ -58,10 +57,8 @@ public class CalendarSettings
 
                 if (settings != null)
                 {
-                    Console.WriteLine($"Deserialized DialogueAppPath: {settings.DialogueAppPath}");
                     if (settings.MonthStartDays != null)
                     {
-                        Console.WriteLine($"MonthStartDays count: {settings.MonthStartDays.Count}");
                         foreach (var kvp in settings.MonthStartDays)
                         {
                             Console.WriteLine($"  {kvp.Key}: {kvp.Value}");

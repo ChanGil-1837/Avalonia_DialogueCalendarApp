@@ -19,14 +19,15 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock Text="Month: "/>
-                    <TextBlock Text="{Binding Month}"/>
+                    <TextBox Text="{Binding Month}"/>
 
                     <TextBlock Text="Day: " Margin="10,0,0,0"/>
-                    <TextBlock Text="{Binding Day}"/>
+                    <TextBox Text="{Binding Day}"/>
                 </StackPanel>
                 
                 <TextBlock Text="Time"/>
-                <TextBox Text="{Binding Time}" />
+                <ComboBox ItemsSource="{Binding TimeSlots}"
+                          SelectedItem="{Binding SelectedTimeSlot}" />
 
                 <TextBlock Text="Location"/>
                 <TextBox Text="{Binding Location}" />
