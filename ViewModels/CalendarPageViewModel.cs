@@ -272,7 +272,7 @@ namespace DialogueCalendarApp.ViewModels
 
         private List<CalendarEvent> ParseCsv(string path)
         {
-            var lines = File.ReadAllLines(path);
+            var lines = System.IO.File.ReadAllLines(path);
             var events = new List<CalendarEvent>();
 
             foreach (var line in lines.Skip(1))
@@ -285,8 +285,12 @@ namespace DialogueCalendarApp.ViewModels
                 int.TryParse(cols[1], out int month);
                 int.TryParse(cols[2], out int day);
 
-                string monthName = new DateTime(DateTime.Now.Year, month, 1).ToString("MMM", CultureInfo.InvariantCulture);
-                string dialogueFile = cols[7];
+                string monthName = new System.DateTime(System.DateTime.Now.Year, month, 1).ToString("MMM", System.Globalization.CultureInfo.InvariantCulture);
+                
+                string dialoguePathFragment = cols[7];
+                string dialogueFile = dialoguePathFragment.Split('/').LastOrDefault();
+
+                if (string.IsNullOrEmpty(dialogueFile)) continue;
 
                 events.Add(new CalendarEvent
                 {
@@ -297,8 +301,8 @@ namespace DialogueCalendarApp.ViewModels
                     Time = cols[4],
                     Location = cols[5],
                     Conditions = cols[6],
-                    KRDialogue = Path.Combine(AppSettings.DIRPATH, "KR", monthName, day.ToString(), dialogueFile),
-                    ENDialogue = Path.Combine(AppSettings.DIRPATH, "EN", monthName, day.ToString(), dialogueFile),
+                    KRDialogue = System.IO.Path.Combine(AppSettings.DIRPATH, "KR", monthName, day.ToString(), dialogueFile),
+                    ENDialogue = System.IO.Path.Combine(AppSettings.DIRPATH, "EN", monthName, day.ToString(), dialogueFile),
                     Desc = cols[8]
                 });
             }
@@ -341,12 +345,14 @@ namespace DialogueCalendarApp.ViewModels
         private void SaveCsv(string path, List<CalendarEvent> events)
         {
             using var writer = new StreamWriter(path, false);
-            writer.WriteLine("Id,Month,Day,Date,Time,Location,Conditions,KRDialogue,Desc");
+            writer.WriteLine("id,month,day,date,time,location,conditions,dialogue,desc");
 
-            foreach (var ev in events)
+            foreach (var ev in events.OrderBy(e => e.Id))
             {
-                string krFile = Path.GetFileName(ev.KRDialogue);
-                writer.WriteLine($"{ev.Id},{ev.Month},{ev.Day},{ev.Date},{ev.Time},{ev.Location},{ev.Conditions},{krFile},{ev.Desc}");
+                string monthName = new System.DateTime(System.DateTime.Now.Year, ev.Month, 1).ToString("MMM", System.Globalization.CultureInfo.InvariantCulture);
+                string dialogueFileName = System.IO.Path.GetFileNameWithoutExtension(ev.KRDialogue);
+                string dialogueColumn = $"{monthName}/{ev.Day}/{dialogueFileName}";
+                writer.WriteLine($"{ev.Id},{ev.Month},{ev.Day},{ev.Date},{ev.Time},{ev.Location},{ev.Conditions},{dialogueColumn},{ev.Desc}");
             }
         }
     }
