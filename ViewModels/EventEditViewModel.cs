@@ -1,6 +1,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,6 +13,8 @@ namespace DialogueCalendarApp.ViewModels;
 public class EventEditViewModel : ObservableObject
 {
     private int _id = 0;
+    private string _originalKrDialoguePath = "";
+    private string _originalEnDialoguePath = "";
     public int Id { get => _id; set => SetProperty(ref _id, value); }
 
     // 날짜와 시간을 하나의 DateTime 프로퍼티로 통합합니다.
@@ -19,13 +22,35 @@ public class EventEditViewModel : ObservableObject
     public string Month
     {
         get => _month;
-        set => SetProperty(ref _month, value);
+        set
+        {
+            // Convert month number to "MMM" format if it's a number
+            string formattedMonth = value;
+            if (int.TryParse(value, out int monthNumber))
+            {
+                if (monthNumber >= 1 && monthNumber <= 12)
+                {
+                    formattedMonth = new System.DateTime(System.DateTime.Now.Year, monthNumber, 1).ToString("MMM", System.Globalization.CultureInfo.InvariantCulture);
+                }
+            }
+
+            if (SetProperty(ref _month, formattedMonth))
+            {
+                UpdateDialoguePaths(FileName); // Reconstruct paths when Month changes
+            }
+        }
     }
     private string _day = "";
     public string Day
     {
         get => _day;
-        set => SetProperty(ref _day, value);
+        set
+        {
+            if (SetProperty(ref _day, value))
+            {
+                UpdateDialoguePaths(FileName); // Reconstruct paths when Day changes
+            }
+        }
     }
     private string _date = "";
     public string Date
@@ -33,6 +58,9 @@ public class EventEditViewModel : ObservableObject
         get => _date;
         set => SetProperty(ref _date, value);
     }
+
+    private DayOfWeek _dayOfWeek;
+    public DayOfWeek DayOfWeek { get => _dayOfWeek; set => SetProperty(ref _dayOfWeek, value); }
 
     public System.Array TimeSlots => System.Enum.GetValues(typeof(Models.TimeSlot));
 
@@ -73,18 +101,68 @@ public class EventEditViewModel : ObservableObject
     private string _location = "";
     public string Location { get => _location; set => SetProperty(ref _location, value); }
 
+    private string _fileName = "";
+    public string FileName
+    {
+        get => _fileName;
+        set
+        {
+            if (SetProperty(ref _fileName, value))
+            {
+                UpdateDialoguePaths(value);
+            }
+        }
+    }
+
+    private void UpdateDialoguePaths(string newFileName)
+    {
+        // Construct new KR path
+        var newKrDir = Path.Combine(AppSettings.DIRPATH, "KR", Month, Day);
+        KRDialogue = Path.Combine(newKrDir, newFileName);
+
+        // Construct new EN path
+        var newEnDir = Path.Combine(AppSettings.DIRPATH, "EN", Month, Day);
+        ENDialogue = Path.Combine(newEnDir, newFileName);
+    }
+
     private string _krDialogue = "";
     public string KRDialogue
     {
-        get => Path.ChangeExtension(_krDialogue, ".json");
-        set => SetProperty(ref _krDialogue, value);
+        get => _krDialogue;
+        set
+        {
+            var newPath = value;
+            if (!string.IsNullOrEmpty(newPath) && !newPath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            {
+                newPath = Path.ChangeExtension(newPath, ".json");
+            }
+            if (SetProperty(ref _krDialogue, newPath))
+            {
+                // When KRDialogue changes, update FileName
+                _fileName = Path.GetFileNameWithoutExtension(newPath);
+                OnPropertyChanged(nameof(FileName));
+            }
+        }
     }
 
     private string _enDialogue = "";
     public string ENDialogue
     {
-        get => Path.ChangeExtension(_enDialogue, ".json");
-        set => SetProperty(ref _enDialogue, value);
+        get => _enDialogue;
+        set
+        {
+            var newPath = value;
+            if (!string.IsNullOrEmpty(newPath) && !newPath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            {
+                newPath = Path.ChangeExtension(newPath, ".json");
+            }
+            if (SetProperty(ref _enDialogue, newPath))
+            {
+                // When ENDialogue changes, update FileName
+                _fileName = Path.GetFileNameWithoutExtension(newPath);
+                OnPropertyChanged(nameof(FileName));
+            }
+        }
     }
     private string _condition = "";
     public string Condition { get => _condition; set => SetProperty(ref _condition, value); }
@@ -101,6 +179,7 @@ public class EventEditViewModel : ObservableObject
     public ICommand SaveCommand { get; }
     public ICommand CancelCommand { get; }
     public ICommand CopyCommand { get; }
+    public ICommand DeleteCommand { get; }
 
     // TaskCompletionSource를 사용해 모달 결과 전달
     public TaskCompletionSource<bool> Completion { get; } = new();
@@ -112,7 +191,29 @@ public class EventEditViewModel : ObservableObject
         OpenKRCommand = new RelayCommand(OpenKR);
         OpenENCommand = new RelayCommand(OpenEN);
         CopyCommand = new RelayCommand(CopyDialogue);
+        DeleteCommand = new RelayCommand(OnDelete);
+    }
 
+    private async void OnDelete()
+    {
+        var tempDir = Path.Combine(Path.GetTempPath(), "DialogueCalendarApp_DeletedEvents");
+        Directory.CreateDirectory(tempDir);
+
+        if (!string.IsNullOrEmpty(_originalKrDialoguePath) && File.Exists(_originalKrDialoguePath))
+        {
+            var destPath = Path.Combine(tempDir, Path.GetFileName(_originalKrDialoguePath));
+            File.Move(_originalKrDialoguePath, destPath, overwrite: true);
+        }
+
+        if (!string.IsNullOrEmpty(_originalEnDialoguePath) && File.Exists(_originalEnDialoguePath))
+        {
+            var destPath = Path.Combine(tempDir, Path.GetFileName(_originalEnDialoguePath));
+            File.Move(_originalEnDialoguePath, destPath, overwrite: true);
+        }
+
+        // Indicate deletion and close the window
+        if (!Completion.Task.IsCompleted)
+            Completion.SetResult(false);
     }
     private async void CopyDialogue()
     {
@@ -167,8 +268,71 @@ public class EventEditViewModel : ObservableObject
     }
 
 
-    private void OnSave()
+    private async void OnSave()
     {
+        // The new paths are simply the current values of KRDialogue and ENDialogue properties
+        var newKrPath = KRDialogue;
+        var newEnPath = ENDialogue;
+
+        // Ensure directories exist for the new paths
+        if (!string.IsNullOrEmpty(newKrPath))
+        {
+            var newKrDir = Path.GetDirectoryName(newKrPath);
+            if (!string.IsNullOrEmpty(newKrDir))
+            {
+                Directory.CreateDirectory(newKrDir);
+            }
+        }
+        if (!string.IsNullOrEmpty(newEnPath))
+        {
+            var newEnDir = Path.GetDirectoryName(newEnPath);
+            if (!string.IsNullOrEmpty(newEnDir))
+            {
+                Directory.CreateDirectory(newEnDir);
+            }
+        }
+
+        // Handle KR Dialogue file
+        if (!string.IsNullOrEmpty(_originalKrDialoguePath) && _originalKrDialoguePath != newKrPath)
+        {
+            if (File.Exists(_originalKrDialoguePath))
+            {
+                // Move content from original to new path
+                File.Move(_originalKrDialoguePath, newKrPath, overwrite: true);
+            }
+            else
+            {
+                // Original didn't exist, but new path is different, create empty file at new path
+                File.WriteAllText(newKrPath, "{}");
+            }
+        }
+        else if (string.IsNullOrEmpty(_originalKrDialoguePath) && !string.IsNullOrEmpty(newKrPath))
+        {
+            // New event, create file at new path
+            File.WriteAllText(newKrPath, "{}");
+        }
+
+        // Handle EN Dialogue file (similar logic)
+        if (!string.IsNullOrEmpty(_originalEnDialoguePath) && _originalEnDialoguePath != newEnPath)
+        {
+            if (File.Exists(_originalEnDialoguePath))
+            {
+                File.Move(_originalEnDialoguePath, newEnPath, overwrite: true);
+            }
+            else
+            {
+                File.WriteAllText(newEnPath, "{}");
+            }
+        }
+        else if (string.IsNullOrEmpty(_originalEnDialoguePath) && !string.IsNullOrEmpty(newEnPath))
+        {
+            File.WriteAllText(newEnPath, "{}");
+        }
+
+        // Reset original paths for subsequent saves
+        _originalKrDialoguePath = newKrPath;
+        _originalEnDialoguePath = newEnPath;
+
         if (!Completion.Task.IsCompleted)
             Completion.SetResult(true);
     }
@@ -205,6 +369,27 @@ public class EventEditViewModel : ObservableObject
             ? desktop.MainWindow : null);
 
         return dialog.Result; // true면 덮어쓰기 진행
+    }
+
+   public void LoadEventData(string month, string day, string fileName, string krDialoguePath, string enDialoguePath, string location, string condition, string desc, Models.TimeSlot selectedTimeSlot, DayOfWeek dayOfWeek)
+    {
+        Month = month;
+        Day = day;
+        FileName = fileName;
+        Location = location;
+        Condition = condition;
+        Desc = desc;
+        SelectedTimeSlot = selectedTimeSlot;
+        DayOfWeek = dayOfWeek; // Set the new DayOfWeek property
+
+        // Capture original paths, ensuring .json extension
+        _originalKrDialoguePath = Path.ChangeExtension(krDialoguePath, ".json");
+        _originalEnDialoguePath = Path.ChangeExtension(enDialoguePath, ".json");
+
+        // Ensure KRDialogue and ENDialogue are set to the provided paths
+        // This will also update FileName via their setters if the paths are different
+        KRDialogue = krDialoguePath;
+        ENDialogue = enDialoguePath;
     }
 
 }

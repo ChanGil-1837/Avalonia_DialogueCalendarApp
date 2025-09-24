@@ -1,6 +1,6 @@
 id,month,day,date,time,location,conditions,dialogue,desc
 0,2,27,Saturday,dawn,room,,Feb/27/1,
-1,2,27,Saturday,morning,street,completed == (0),Feb/27/2,"
+1,2,27,Saturday,morning,street,completed == (0),Feb/27/2,
 2,2,27,Saturday,morning,station,completed == (1),Feb/27/3,
 3,2,27,Saturday,noon,city,completed == (2),Feb/27/4,
 4,2,27,Saturday,noon,studio,completed == (3),Feb/27/5,
@@ -8,6 +8,6 @@ id,month,day,date,time,location,conditions,dialogue,desc
 6,2,27,Saturday,Afternoon,station,completed == (5),Feb/27/7,
 7,2,27,Saturday,Afternoon,studio,completed == (6),Feb/27/8,
 8,2,27,Saturday,Afternoon,room,,Feb/27/9,
-9,2,20,Saturday,morning,room,,Feb/20/01,
-10,2,20,Saturday,Afternoon,room,,Feb/20/02,ㅁ
-11,2,21,Sunday,Morning,room,,Feb/21/01,
+9,2,22,Monday,Morning,room,,Feb/22/03,첫번째 이벤
+10,2,22,Monday,Afternoon,room,,Feb/22/02,두번째 이벤
+11,2,22,Monday,Morning,room,,Feb/22/01,

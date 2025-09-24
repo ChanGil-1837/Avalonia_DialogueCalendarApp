@@ -24,6 +24,9 @@
                     <TextBlock Text="Day: " Margin="10,0,0,0"/>
                     <TextBox Text="{Binding Day}"/>
                 </StackPanel>
+
+                <TextBlock Text="Day of Week"/>
+                <TextBox Text="{Binding DayOfWeek}" IsReadOnly="True"/>
                 
                 <TextBlock Text="Time"/>
                 <ComboBox ItemsSource="{Binding TimeSlots}"
@@ -32,10 +35,12 @@
                 <TextBlock Text="Location"/>
                 <TextBox Text="{Binding Location}" />
 
-                <TextBlock Text="KRDialogue"/>
-                <TextBox Text="{Binding KRDialogue}" />
-                <TextBlock Text="ENDialogue"/>
-                <TextBox Text="{Binding ENDialogue}" />
+                <TextBlock Text="KRDialogue Path" Margin="0,10,0,0"/>
+                <TextBox Text="{Binding KRDialogue}" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Height="60" />
+                <TextBlock Text="ENDialogue Path" Margin="0,10,0,0"/>
+                <TextBox Text="{Binding ENDialogue}" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" Height="60" />
+                <TextBlock Text="File Name" Margin="0,10,0,0"/>
+                <TextBox Text="{Binding FileName}" />
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Spacing="10">
                     <Button Content="Open KR" Command="{Binding OpenKRCommand}" />
                     <Button Content="Open EN" Command="{Binding OpenENCommand}" />
@@ -52,6 +57,7 @@
                 <TextBox Text="{Binding Desc}" AcceptsReturn="True" Height="60"/>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20 0 0">
+                    <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="0 0 10 0"/>
                     <Button Content="Save" Command="{Binding SaveCommand}" Margin="0 0 10 0"/>
                     <Button Content="Cancel" Command="{Binding CancelCommand}"/>
                 </StackPanel>

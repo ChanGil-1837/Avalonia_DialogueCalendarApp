@@ -214,10 +214,17 @@ namespace DialogueCalendarApp.ViewModels
 
                 // 편집 후 기존 이벤트 제거 & 새 이벤트 추가
                 events.RemoveAll(e => e.Id == ev.Id);
+                var monthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    { "Jan", 1 }, { "Feb", 2 }, { "Mar", 3 }, { "Apr", 4 },
+                    { "May", 5 }, { "Jun", 6 }, { "Jul", 7 }, { "Aug", 8 },
+                    { "Sep", 9 }, { "Oct", 10 }, { "Nov", 11 }, { "Dec", 12 }
+                };
+
                 events.Add(new CalendarEvent
                 {
                     Id = vm.Id,
-                    Month = int.TryParse(vm.Month, out int m) ? m : 1,
+                    Month = int.TryParse(vm.Month, out int m) ? m : (monthMap.TryGetValue(vm.Month, out var monthVal) ? monthVal : 1),
                     Day = int.TryParse(vm.Day, out int d) ? d : 1,
                     Date = vm.Date,
                     Time = vm.Time,
@@ -227,6 +234,7 @@ namespace DialogueCalendarApp.ViewModels
                     ENDialogue = vm.ENDialogue,
                     Desc = vm.Desc
                 });
+
 
                 SaveCsv(AppSettings.CSVPATH, events);
                 RefreshCurrentMonth();
