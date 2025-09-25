@@ -130,6 +130,12 @@ namespace DialogueCalendarApp.ViewModels
         public override bool CanNavigatePrevious { get => throw new NotImplementedException(); protected set => throw new NotImplementedException(); }
 
         private string _csvPath;
+        Dictionary<string, int> monthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Jan", 1 }, { "Feb", 2 }, { "Mar", 3 }, { "Apr", 4 },
+            { "May", 5 }, { "Jun", 6 }, { "Jul", 7 }, { "Aug", 8 },
+            { "Sep", 9 }, { "Oct", 10 }, { "Nov", 11 }, { "Dec", 12 }
+        };
 
         public CalendarPageViewModel()
         {
@@ -140,18 +146,24 @@ namespace DialogueCalendarApp.ViewModels
                 int dayNumber = tuple.DayNumber;
                 Window parentWindow = tuple.ParentWindow;
                 if (parentWindow == null) return;
-
+                monthMap.TryGetValue(CurrentMonth, out var monthVal);
                 var events = ParseCsv(AppSettings.CSVPATH);
                 int newId = (events.Count > 0) ? events.Max(e => e.Id) + 1 : 1;
 
-                var vm = new EventEditViewModel()
+                // 요일 계산
+                var weekDays = new[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+                int startIndex = Array.IndexOf(weekDays, SelectedStartDay);
+                if (startIndex < 0) startIndex = 0;
+                string dayOfWeek = weekDays[(startIndex + (dayNumber - 1)) % 7];
+
+                var vm = new EventEditViewModel(SelectedStartDay)
                 {
                     Id = newId,
-                    Month = "",
-                    Day = "",
-                    Date = "",
-                    Time = "",
-                    Location = "",
+                    Month = monthVal.ToString(),
+                    Day = dayNumber.ToString(),
+                    Date = dayOfWeek,   // ← 여기서 요일 넣음
+                    Time = "Morning",
+                    Location = "Room",
                     Condition = "",
                     KRDialogue = "",
                     ENDialogue = "",
@@ -166,7 +178,7 @@ namespace DialogueCalendarApp.ViewModels
                     events.Add(new CalendarEvent
                     {
                         Id = vm.Id,
-                        Month = int.TryParse(vm.Month, out int m) ? m : 1,
+                        Month = monthMap.TryGetValue(vm.Month, out var m) ? m : 1,
                         Day = int.TryParse(vm.Day, out int d) ? d : 1,
                         Date = vm.Date,
                         Time = vm.Time,
@@ -191,7 +203,7 @@ namespace DialogueCalendarApp.ViewModels
                 var ev = events.FirstOrDefault(e => e.Id == id);
                 if (ev == null) return;
 
-                var vm = new EventEditViewModel(id)
+                var vm = new EventEditViewModel(SelectedStartDay,id)
                 {
                     Id = ev.Id,
                     Month = ev.Month + "",
@@ -214,12 +226,6 @@ namespace DialogueCalendarApp.ViewModels
 
                 // 편집 후 기존 이벤트 제거 & 새 이벤트 추가
                 events.RemoveAll(e => e.Id == ev.Id);
-                var monthMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-                {
-                    { "Jan", 1 }, { "Feb", 2 }, { "Mar", 3 }, { "Apr", 4 },
-                    { "May", 5 }, { "Jun", 6 }, { "Jul", 7 }, { "Aug", 8 },
-                    { "Sep", 9 }, { "Oct", 10 }, { "Nov", 11 }, { "Dec", 12 }
-                };
 
                 events.Add(new CalendarEvent
                 {

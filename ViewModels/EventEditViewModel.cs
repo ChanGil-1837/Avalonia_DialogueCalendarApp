@@ -49,8 +49,21 @@ public class EventEditViewModel : ObservableObject
             if (SetProperty(ref _day, value))
             {
                 UpdateDialoguePaths(FileName); // Reconstruct paths when Day changes
+                UpdateDayOfWeek();
             }
         }
+    }
+    private void UpdateDayOfWeek()
+    {
+        if (!int.TryParse(Day, out int dayNumber) || dayNumber <= 0)
+            return;
+
+        // 달력 시작 요일 기준으로 요일 계산
+        int startIndex = (int)_selectedStartDay;  // 0=Sunday
+        int weekdayIndex = (startIndex + (dayNumber - 1)) % 7;
+
+        DayOfWeek = (DayOfWeek)weekdayIndex;
+        Date = DayOfWeek.ToString(); // "Monday", "Saturday" 등
     }
     private string _date = "";
     public string Date
@@ -183,9 +196,10 @@ public class EventEditViewModel : ObservableObject
 
     // TaskCompletionSource를 사용해 모달 결과 전달
     public TaskCompletionSource<bool> Completion { get; } = new();
-
-    public EventEditViewModel(int id = -1)
+    private readonly DayOfWeek _selectedStartDay;
+    public EventEditViewModel(DayOfWeek selectedStartDay, int id = -1)
     {
+        _selectedStartDay = selectedStartDay;
         SaveCommand = new RelayCommand(OnSave);
         CancelCommand = new RelayCommand(OnCancel);
         OpenKRCommand = new RelayCommand(OpenKR);
@@ -273,7 +287,17 @@ public class EventEditViewModel : ObservableObject
         // The new paths are simply the current values of KRDialogue and ENDialogue properties
         var newKrPath = KRDialogue;
         var newEnPath = ENDialogue;
-
+        async Task<bool> ConfirmOverwrite(string path)
+        {
+            if (File.Exists(path))
+            {
+                var dialog = new Views.ConfirmDialog($"파일이 이미 존재합니다:\n{path}\n덮어쓰시겠습니까?");
+                return await dialog.ShowDialog<bool>(
+                    App.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop
+                        ? desktop.MainWindow : null);
+            }
+            return true;
+        }
         // Ensure directories exist for the new paths
         if (!string.IsNullOrEmpty(newKrPath))
         {
@@ -303,13 +327,13 @@ public class EventEditViewModel : ObservableObject
             else
             {
                 // Original didn't exist, but new path is different, create empty file at new path
-                File.WriteAllText(newKrPath, "{}");
+                // File.WriteAllText(newKrPath, "{}");
             }
         }
         else if (string.IsNullOrEmpty(_originalKrDialoguePath) && !string.IsNullOrEmpty(newKrPath))
         {
             // New event, create file at new path
-            File.WriteAllText(newKrPath, "{}");
+            // File.WriteAllText(newKrPath, "{}");
         }
 
         // Handle EN Dialogue file (similar logic)
@@ -321,12 +345,12 @@ public class EventEditViewModel : ObservableObject
             }
             else
             {
-                File.WriteAllText(newEnPath, "{}");
+                // File.WriteAllText(newEnPath, "{}");
             }
         }
         else if (string.IsNullOrEmpty(_originalEnDialoguePath) && !string.IsNullOrEmpty(newEnPath))
         {
-            File.WriteAllText(newEnPath, "{}");
+            // File.WriteAllText(newEnPath, "{}");
         }
 
         // Reset original paths for subsequent saves
@@ -335,12 +359,35 @@ public class EventEditViewModel : ObservableObject
 
         if (!Completion.Task.IsCompleted)
             Completion.SetResult(true);
+        if (App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            foreach (var window in desktop.Windows)
+            {
+                if (window.DataContext == this) // 자기 자신 창 찾기
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
     }
 
     private void OnCancel()
     {
         if (!Completion.Task.IsCompleted)
             Completion.SetResult(false);
+
+        if (App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            foreach (var window in desktop.Windows)
+            {
+                if (window.DataContext == this) // 자기 자신 창 찾기
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
     }
 
    
