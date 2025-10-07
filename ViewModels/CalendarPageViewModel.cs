@@ -15,6 +15,13 @@ using DialogueCalendarApp.Views;
 
 namespace DialogueCalendarApp.ViewModels
 {
+    public enum EditResultType
+    {
+        None,
+        Saved,
+        Deleted,
+        Cancelled
+    }
     public class CalendarEvent : ObservableObject
     {
         private int _id;
@@ -116,6 +123,7 @@ namespace DialogueCalendarApp.ViewModels
 
         public ICommand AddEventCommand { get; }
         public ICommand EditEventCommand { get; }
+        public ICommand DeleteEventCommand { get; }
 
         public ObservableCollection<CalendarDayViewModel> Days { get; } = new();
 
@@ -147,7 +155,7 @@ namespace DialogueCalendarApp.ViewModels
                 Window parentWindow = tuple.ParentWindow;
                 if (parentWindow == null) return;
                 monthMap.TryGetValue(CurrentMonth, out var monthVal);
-                var events = ParseCsv(AppSettings.CSVPATH);
+                var events = ParseCsv(AppSettings.CSVPATH, monthVal);
                 int newId = (events.Count > 0) ? events.Max(e => e.Id) + 1 : 1;
 
                 // 요일 계산
@@ -173,7 +181,7 @@ namespace DialogueCalendarApp.ViewModels
                 var window = new EventEditWindow { DataContext = vm };
                 await window.ShowDialog(parentWindow);
 
-                if (vm.Completion.Task.IsCompletedSuccessfully && await vm.Completion.Task)
+                if (vm.Completion.Task.IsCompletedSuccessfully && await vm.Completion.Task == EditResultType.Saved)
                 {
                     events.Add(new CalendarEvent
                     {
@@ -198,12 +206,12 @@ namespace DialogueCalendarApp.ViewModels
                 int id = tuple.id;
                 Window parentWindow = tuple.ParentWindow;
                 if (parentWindow == null) return;
-
-                var events = ParseCsv(AppSettings.CSVPATH);
+                monthMap.TryGetValue(CurrentMonth, out var monthVal);
+                var events = ParseCsv(AppSettings.CSVPATH, 0); // 전체 읽기 (삭제 대비)
                 var ev = events.FirstOrDefault(e => e.Id == id);
                 if (ev == null) return;
 
-                var vm = new EventEditViewModel(SelectedStartDay,id)
+                var vm = new EventEditViewModel(SelectedStartDay, id)
                 {
                     Id = ev.Id,
                     Month = ev.Month + "",
@@ -218,33 +226,72 @@ namespace DialogueCalendarApp.ViewModels
                 };
 
                 var window = new EventEditWindow { DataContext = vm };
-                var showDialogTask = window.ShowDialog(parentWindow);
-                bool result = await vm.Completion.Task;
-                window.Close();
+                await window.ShowDialog(parentWindow); // 창이 닫힐 때까지 대기
+                var result = await vm.Completion.Task;
 
-                if (!result) return;
-
-                // 편집 후 기존 이벤트 제거 & 새 이벤트 추가
-                events.RemoveAll(e => e.Id == ev.Id);
-
-                events.Add(new CalendarEvent
+                switch (result)
                 {
-                    Id = vm.Id,
-                    Month = int.TryParse(vm.Month, out int m) ? m : (monthMap.TryGetValue(vm.Month, out var monthVal) ? monthVal : 1),
-                    Day = int.TryParse(vm.Day, out int d) ? d : 1,
-                    Date = vm.Date,
-                    Time = vm.Time,
-                    Location = vm.Location,
-                    Conditions = vm.Condition,
-                    KRDialogue = vm.KRDialogue,
-                    ENDialogue = vm.ENDialogue,
-                    Desc = vm.Desc
-                });
+                    case EditResultType.Saved:
+                        // 편집 저장 → 기존 삭제 후 새 이벤트 추가
+                        events.RemoveAll(e => e.Id == ev.Id);
 
+                        events.Add(new CalendarEvent
+                        {
+                            Id = vm.Id,
+                            Month = int.TryParse(vm.Month, out int m) ? m : (monthMap.TryGetValue(vm.Month, out var monthVal2) ? monthVal2 : 1),
+                            Day = int.TryParse(vm.Day, out int d) ? d : 1,
+                            Date = vm.Date,
+                            Time = vm.Time,
+                            Location = vm.Location,
+                            Conditions = vm.Condition,
+                            KRDialogue = vm.KRDialogue,
+                            ENDialogue = vm.ENDialogue,
+                            Desc = vm.Desc
+                        });
 
-                SaveCsv(AppSettings.CSVPATH, events);
-                RefreshCurrentMonth();
+                        SaveCsv(AppSettings.CSVPATH, events);
+                        RefreshCurrentMonth();
+                        break;
+
+                    case EditResultType.Deleted:
+                        events.RemoveAll(e => e.Id == ev.Id);
+                        TryDeleteFile(ev.KRDialogue);
+                        TryDeleteFile(ev.ENDialogue);
+                        SaveCsv(AppSettings.CSVPATH, events);
+                        RefreshCurrentMonth();
+                        break;
+
+                    case EditResultType.Cancelled:
+                    case EditResultType.None:
+                    default:
+                        // 아무것도 안 함
+                        break;
+                }
             });
+
+
+            
+        }
+        private void TryDeleteFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path)) return;
+
+            // 확장자 없으면 .json 붙이기
+            if (!Path.HasExtension(path))
+                path += ".json";
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    File.Delete(path);
+                }
+                catch (Exception ex)
+                {
+                    // 로그 찍거나 무시
+                    Console.WriteLine($"파일 삭제 실패: {path}, 예외: {ex.Message}");
+                }
+            }
         }
 
         private void LoadSettings()
@@ -257,8 +304,8 @@ namespace DialogueCalendarApp.ViewModels
             CurrentMonth = monthName;
             _csvPath = csvPath;
             if (!File.Exists(_csvPath)) return;
-
-            var events = ParseCsv(_csvPath);
+            monthMap.TryGetValue(CurrentMonth, out var monthVal);
+            var events = ParseCsv(_csvPath, monthVal);
             DayOfWeek firstDay = firstDayOverride ?? (_monthStartDays.ContainsKey(monthName)
                                                     ? (DayOfWeek)_monthStartDays[monthName]
                                                     : DayOfWeek.Sunday);
@@ -284,7 +331,7 @@ namespace DialogueCalendarApp.ViewModels
                 SetMonth(_currentMonth, AppSettings.CSVPATH, SelectedStartDay);
         }
 
-        private List<CalendarEvent> ParseCsv(string path)
+        private List<CalendarEvent> ParseCsv(string path, int filterMonth)
         {
             var lines = System.IO.File.ReadAllLines(path);
             var events = new List<CalendarEvent>();
@@ -292,6 +339,7 @@ namespace DialogueCalendarApp.ViewModels
             foreach (var line in lines.Skip(1))
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
+
                 var cols = line.Split(',');
                 if (cols.Length < 9) continue;
 
@@ -299,8 +347,20 @@ namespace DialogueCalendarApp.ViewModels
                 int.TryParse(cols[1], out int month);
                 int.TryParse(cols[2], out int day);
 
-                string monthName = new System.DateTime(System.DateTime.Now.Year, month, 1).ToString("MMM", System.Globalization.CultureInfo.InvariantCulture);
-                
+                // 필터된 월이 지정되어 있고, 현재 라인의 월과 다르면 스킵
+                if (filterMonth != 0 && month != filterMonth) continue;
+
+                string monthName;
+                try
+                {
+                    monthName = new System.DateTime(System.DateTime.Now.Year, month, 1)
+                        .ToString("MMM", System.Globalization.CultureInfo.InvariantCulture);
+                }
+                catch
+                {
+                    continue; // 유효하지 않은 월이면 스킵
+                }
+
                 string dialoguePathFragment = cols[7];
                 string dialogueFile = dialoguePathFragment.Split('/').LastOrDefault();
 
@@ -320,8 +380,10 @@ namespace DialogueCalendarApp.ViewModels
                     Desc = cols[8]
                 });
             }
+
             return events;
         }
+
 
         private void GenerateMonthDays(int month, List<CalendarEvent> events, DayOfWeek firstDay)
         {

@@ -195,7 +195,7 @@ public class EventEditViewModel : ObservableObject
     public ICommand DeleteCommand { get; }
 
     // TaskCompletionSource를 사용해 모달 결과 전달
-    public TaskCompletionSource<bool> Completion { get; } = new();
+    public TaskCompletionSource<EditResultType> Completion { get; } = new();
     private readonly DayOfWeek _selectedStartDay;
     public EventEditViewModel(DayOfWeek selectedStartDay, int id = -1)
     {
@@ -210,24 +210,19 @@ public class EventEditViewModel : ObservableObject
 
     private async void OnDelete()
     {
-        var tempDir = Path.Combine(Path.GetTempPath(), "DialogueCalendarApp_DeletedEvents");
-        Directory.CreateDirectory(tempDir);
-
-        if (!string.IsNullOrEmpty(_originalKrDialoguePath) && File.Exists(_originalKrDialoguePath))
-        {
-            var destPath = Path.Combine(tempDir, Path.GetFileName(_originalKrDialoguePath));
-            File.Move(_originalKrDialoguePath, destPath, overwrite: true);
-        }
-
-        if (!string.IsNullOrEmpty(_originalEnDialoguePath) && File.Exists(_originalEnDialoguePath))
-        {
-            var destPath = Path.Combine(tempDir, Path.GetFileName(_originalEnDialoguePath));
-            File.Move(_originalEnDialoguePath, destPath, overwrite: true);
-        }
-
-        // Indicate deletion and close the window
         if (!Completion.Task.IsCompleted)
-            Completion.SetResult(false);
+            Completion.SetResult(EditResultType.Deleted);
+        if (App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            foreach (var window in desktop.Windows)
+            {
+                if (window.DataContext == this) // 자기 자신 창 찾기
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
     }
     private async void CopyDialogue()
     {
@@ -358,7 +353,7 @@ public class EventEditViewModel : ObservableObject
         _originalEnDialoguePath = newEnPath;
 
         if (!Completion.Task.IsCompleted)
-            Completion.SetResult(true);
+            Completion.SetResult(EditResultType.Saved);
         if (App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
         {
             foreach (var window in desktop.Windows)
@@ -375,7 +370,7 @@ public class EventEditViewModel : ObservableObject
     private void OnCancel()
     {
         if (!Completion.Task.IsCompleted)
-            Completion.SetResult(false);
+            Completion.SetResult(EditResultType.Cancelled);
 
         if (App.Current.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
         {
