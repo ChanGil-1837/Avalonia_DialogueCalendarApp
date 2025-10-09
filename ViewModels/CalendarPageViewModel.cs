@@ -207,7 +207,7 @@ namespace DialogueCalendarApp.ViewModels
                 Window parentWindow = tuple.ParentWindow;
                 if (parentWindow == null) return;
                 monthMap.TryGetValue(CurrentMonth, out var monthVal);
-                var events = ParseCsv(AppSettings.CSVPATH, 0); // 전체 읽기 (삭제 대비)
+                var events = ParseCsv(AppSettings.CSVPATH, monthVal); // 전체 읽기 (삭제 대비)
                 var ev = events.FirstOrDefault(e => e.Id == id);
                 if (ev == null) return;
 
@@ -232,20 +232,43 @@ namespace DialogueCalendarApp.ViewModels
                 switch (result)
                 {
                     case EditResultType.Saved:
-                        // 편집 저장 → 기존 삭제 후 새 이벤트 추가
-                        events.RemoveAll(e => e.Id == ev.Id);
+                        var oldEvent = ev;
+                        int oldDay = oldEvent.Day;
+                        int oldMonth = oldEvent.Month;
+
+                        int newDay = int.TryParse(vm.Day, out int d) ? d : 1;
+                        int newMonth;
+                        if (!int.TryParse(vm.Month, out newMonth))
+                        {
+                            if (!monthMap.TryGetValue(vm.Month, out newMonth))
+                            {
+                                newMonth = oldMonth;
+                            }
+                        }
+
+                        string krPath = vm.KRDialogue;
+                        string enPath = vm.ENDialogue;
+
+                        if (oldDay != newDay || oldMonth != newMonth)
+                        {
+                            string newMonthName = new DateTime(DateTime.Now.Year, newMonth, 1).ToString("MMM", CultureInfo.InvariantCulture);
+                            krPath = MoveFile(oldEvent.KRDialogue, newDay, newMonthName);
+                            enPath = MoveFile(oldEvent.ENDialogue, newDay, newMonthName);
+                        }
+                        
+                        events.RemoveAll(e => e.Id == oldEvent.Id);
 
                         events.Add(new CalendarEvent
                         {
                             Id = vm.Id,
-                            Month = int.TryParse(vm.Month, out int m) ? m : (monthMap.TryGetValue(vm.Month, out var monthVal2) ? monthVal2 : 1),
-                            Day = int.TryParse(vm.Day, out int d) ? d : 1,
+                            Month = newMonth,
+                            Day = newDay,
                             Date = vm.Date,
                             Time = vm.Time,
                             Location = vm.Location,
                             Conditions = vm.Condition,
-                            KRDialogue = vm.KRDialogue,
-                            ENDialogue = vm.ENDialogue,
+                            KRDialogue = krPath,
+                            ENDialogue = enPath,
                             Desc = vm.Desc
                         });
 
@@ -293,6 +316,57 @@ namespace DialogueCalendarApp.ViewModels
                 }
             }
         }
+
+        private string MoveFile(string sourcePath, int newDay, string newMonthName)
+        {
+            if (string.IsNullOrWhiteSpace(sourcePath))
+                return null;
+
+            string sourceFilePath = sourcePath + ".json";
+
+            if (!File.Exists(sourceFilePath))
+                return null;
+
+            try
+            {
+                string fileName = Path.GetFileName(sourceFilePath);
+                var dirInfo = new DirectoryInfo(Path.GetDirectoryName(sourceFilePath));
+                var monthDir = dirInfo.Parent;
+                var langDir = monthDir?.Parent;
+                var eventListDir = langDir?.Parent;
+
+                if (eventListDir == null || langDir == null || string.IsNullOrWhiteSpace(newMonthName))
+                    return null;
+
+                string lang = langDir.Name;
+
+                string newDir = Path.Combine(eventListDir.FullName, lang, newMonthName, newDay.ToString());
+                Directory.CreateDirectory(newDir);
+
+                string newFilePath = Path.Combine(newDir, fileName);
+
+                if (!sourceFilePath.Equals(newFilePath, StringComparison.OrdinalIgnoreCase))
+                {
+                    File.Move(sourceFilePath, newFilePath);
+
+                    string sourceMetaFilePath = sourceFilePath + ".meta";
+                    string newMetaFilePath = newFilePath + ".meta";
+
+                    if (File.Exists(sourceMetaFilePath))
+                    {
+                        File.Move(sourceMetaFilePath, newMetaFilePath);
+                    }
+                }
+
+                return newFilePath;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error moving file {sourcePath}: {ex.Message}");
+                return null;
+            }
+        }
+
 
         private void LoadSettings()
         {
